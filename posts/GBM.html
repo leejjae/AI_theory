@@ -243,7 +243,8 @@ window.Quarto = {
 <span class="math inline">\(F_0(x) = \underset{\gamma}{\arg\min}\sum_{i=1}^n L(y_i, \gamma)\)</span></td>
 </tr>
 <tr class="even">
-<td>2. <strong>For m = 1 to M</strong>: 1. Compute so-called pseudo-residuals <span class="math inline">\(r_{im} = - \Bigg[\displaystyle\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\Bigg]_{F(x) = F_{m-1}(x)}\)</span> for <span class="math inline">\(i = 1, ... ,n\)</span> 2. Fit a base learner (or weak learner, e.g.&nbsp;tree) closed under scaling <span class="math inline">\(h_m(x)\)</span> to pseuo-residuals, i.e.&nbsp;train it using the training set <span class="math inline">\(\{(x_i, r_{im})\}_{i=1}^{n}\)</span> 3. Compute multiplier <span class="math inline">\(\gamma_{m}\)</span> by solving the following one-dimensional optimization problem:<br>
+<td>2. For m = 1 to M : 1. Compute so-called pseudo-residuals<br>
+<span class="math inline">\(r_{im} = - \Bigg[\displaystyle\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\Bigg]_{F(x) = F_{m-1}(x)}\)</span> for <span class="math inline">\(i = 1, ... ,n\)</span> 2. Fit a base learner (or weak learner, e.g.&nbsp;tree) closed under scaling <span class="math inline">\(h_m(x)\)</span> to pseuo-residuals, i.e.&nbsp;train it using the training set <span class="math inline">\(\{(x_i, r_{im})\}_{i=1}^{n}\)</span> 3. Compute multiplier <span class="math inline">\(\gamma_{m}\)</span> by solving the following one-dimensional optimization problem:<br>
 <span class="math inline">\(\gamma_m = \underset{\gamma}{\arg\min}\sum_{i=1}^n L(y_i, F_{m-1}(x_i) + \gamma h_m(x_i))\)</span> 4. Update the model:<br>
 <span class="math inline">\(F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)\)</span></td>
 </tr>
@@ -407,35 +408,16 @@ window.Quarto = {
 </section>
 <section id="단계-1" class="level4">
 <h4 class="anchored" data-anchor-id="단계-1"><strong>2단계</strong></h4>
-<table class="table">
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">2. <strong>For <span class="math inline">\(m\)</span> = 1 to <span class="math inline">\(M\)</span></strong>:</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1. Compute so-called pseudo-residuals</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(r_{im} = - \Bigg[\displaystyle\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\Bigg]_{F(x) = F_{m-1}(x)}\)</span> for <span class="math inline">\(i = 1, ... ,n\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2. Fit a base learner (or weak learner, e.g.&nbsp;tree) closed under scaling <span class="math inline">\(h_m(x)\)</span> to pseuo-residuals, i.e.&nbsp;train it using the training set <span class="math inline">\(\{(x_i, r_{im})\}_{i=1}^{n}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3. Compute multiplier <span class="math inline">\(\gamma_{m}\)</span> by solving the following one-dimensional optimization problem:\</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\gamma_m = \underset{\gamma}{\arg\min}\sum_{i=1}^n L(y_i, F_{m-1}(x_i) + \gamma h_m(x_i))\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">4. Update the model:\</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)\)</span></td>
-</tr>
-</tbody>
-</table>
+<ol start="2" type="1">
+<li><strong>For <span class="math inline">\(m\)</span> = 1 to <span class="math inline">\(M\)</span></strong>:
 <ol type="1">
+<li>Compute so-called pseudo-residuals <span class="math inline">\(r_{im} = - \Bigg[\displaystyle\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\Bigg]_{F(x) = F_{m-1}(x)}\)</span> for <span class="math inline">\(i = 1, ... ,n\)</span></li>
+<li>Fit a base learner (or weak learner, e.g.&nbsp;tree) closed under scaling <span class="math inline">\(h_m(x)\)</span> to pseuo-residuals, i.e.&nbsp;train it using the training set <span class="math inline">\(\{(x_i, r_{im})\}_{i=1}^{n}\)</span></li>
+<li>Compute multiplier <span class="math inline">\(\gamma_{m}\)</span> by solving the following one-dimensional optimization problem:<br>
+<span class="math inline">\(\gamma_m = \underset{\gamma}{\arg\min}\sum_{i=1}^n L(y_i, F_{m-1}(x_i) + \gamma h_m(x_i))\)</span></li>
+<li>Update the model:<br>
+<span class="math inline">\(F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)\)</span></li>
+</ol></li>
 <li><code>A단계</code>부터 <code>D단계</code>를 총 <code>M번</code> 반복하는 단계입니다.</li>
 <li>여기서 <span class="math inline">\(M\)</span>은 예측기의 개수, <span class="math inline">\(n\)</span>은 데이터의 개수입니다.</li>
 <li>예측기에 번호를 붙여 <span class="math inline">\(m\)</span>=1인 경우는 1번 예측기 <span class="math inline">\(m=M\)</span>인 경우는 M번 예측기라고 부르겠습니다.</li>
