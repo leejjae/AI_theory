@@ -1,0 +1,18 @@
+# test
+author:
+    name: 이정재
+
+nav:
+    Contents:
+     - '/blog/'
+     - { ML_theory: '/blog/ML_theory/' }
+     - { DL_theory: '/blog/DL_theory/' }
+    About:
+     - '/about/'
+
+ML_theory_page: '/blog/ML_theory/'
+DL_theory_page: '/blog/DL_theory/'
+
+     
+     
+    
