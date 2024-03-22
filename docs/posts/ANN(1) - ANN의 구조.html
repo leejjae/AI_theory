@@ -268,10 +268,10 @@ window.Quarto = {
 <ul>
 <li>k번째 노드에서의 계산은 다음과 같습니다. <span class="math inline">\(x_kw_k+b_k\)</span></li>
 </ul></li>
-<li>Fully Connected Layer에 의해서 <span class="math inline">\(i+1\)</span>번째 층(layer)에서 각각의 노드는 입력값을 벡터로 받게 됩니다 : $ = (a^1_1 a^1_2 … a^1_n)$4</li>
+<li>Fully Connected Layer에 의해서 <span class="math inline">\(i+1\)</span>번째 층(layer)에서 각각의 노드는 입력값을 벡터로 받게 됩니다 : <span class="math inline">\(\displaystyle\overrightarrow{a^1} = \displaystyle\left(a^1_1 a^1_2 ... a^1_n \right)\)</span></li>
 <li><span class="math inline">\(i+1\)</span>번째 층(layer)의 <span class="math inline">\(k\)</span>번째 노드에서의 연산은 다음과 같습니다.
 <ul>
-<li><span class="math inline">\(\displaystyle(\overrightarrow{a_k})^T\overrightarrow{w^k} + b^1_k\)</span></li>
+<li><span class="math inline">\(\displaystyle\overrightarrow{a_k}(\overrightarrow{w_k})^T + b^1_k\)</span></li>
 </ul></li>
 <li>각 노드에서는 가중치(weight)곱과 편향(bias)합 연산이 이루어지고, <code>Activation Function</code>을 거치게 됩니다.</li>
 </ol>
@@ -305,14 +305,15 @@ window.Quarto = {
 </ul>
 <ol start="2" type="1">
 <li><p>하지만 <span class="math inline">\(x \to x-f'(x)\)</span>로 업데이트 할 경우 다음과 같은 문제가 있습니다. <span class="math inline">\(x \to x-f'(x) = -3x\)</span><br>
+<br>
 <span class="math inline">\(x=1)\)</span><br>
 <span class="math inline">\(1 \to -3\)</span><br>
 <br>
 <span class="math inline">\(x=-3)\)</span><br>
 $ -3 (-3)(-3)=9<span class="math inline">\(\
 \
-\)</span>x=9)<span class="math inline">\(\
-\)</span> 9 (-3)9 = -27$</p></li>
+\)</span>x=9)$<br>
+<span class="math inline">\(9 \to (-3)9 = -27\)</span></p></li>
 <li><p>즉 <span class="math inline">\(x\)</span>값은 <span class="math inline">\(f(x)\)</span>가 최소인 <span class="math inline">\(x\)</span>로 수렴하지 못하고 발산하게 됩니다.</p></li>
 <li><p>이는 learning rate(학습률)로 해결할 수 있습니다.</p></li>
 </ol>
@@ -396,6 +397,7 @@ $ -3 (-3)(-3)=9<span class="math inline">\(\
 <figcaption>스크린샷 2024-03-22 160148.png</figcaption>
 </figure>
 </div>
+<p><code>-</code> <code>Activation Function</code>을 사용해야 하는 이유 * 기본적으로 Affine Function은 <code>lienar function</code>이므로 Affine Function만 계속해서 늘려간다면, Hidden Layer가 아무리 깊어도 학습효과를 누리지 못함.</p>
 
 
 </section>
