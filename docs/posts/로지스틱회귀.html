@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="이정재">
-<meta name="dcterms.date" content="2024-03-16">
+<meta name="dcterms.date" content="2024-03-24">
 
-<title>AI_theory - GBM</title>
+<title>AI_theory - 로지스틱회귀</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,44 +22,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,9 +68,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -186,20 +149,23 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#gbm-gradient-boosting-machine" id="toc-gbm-gradient-boosting-machine" class="nav-link active" data-scroll-target="#gbm-gradient-boosting-machine">GBM (Gradient Boosting Machine)</a>
+  <li><a href="#로지스틱-회귀logistic-regression" id="toc-로지스틱-회귀logistic-regression" class="nav-link active" data-scroll-target="#로지스틱-회귀logistic-regression">로지스틱 회귀(Logistic Regression)</a>
   <ul class="collapse">
-  <li><a href="#algorithm" id="toc-algorithm" class="nav-link" data-scroll-target="#algorithm">Algorithm</a></li>
-  <li><a href="#코드-구현" id="toc-코드-구현" class="nav-link" data-scroll-target="#코드-구현">코드 구현</a></li>
+  <li><a href="#베르누이-분포" id="toc-베르누이-분포" class="nav-link" data-scroll-target="#베르누이-분포">베르누이 분포</a></li>
+  <li><a href="#logistic-function" id="toc-logistic-function" class="nav-link" data-scroll-target="#logistic-function">Logistic Function</a></li>
+  <li><a href="#logistic-regression로지스틱-회귀" id="toc-logistic-regression로지스틱-회귀" class="nav-link" data-scroll-target="#logistic-regression로지스틱-회귀">Logistic Regression(로지스틱 회귀)</a></li>
+  <li><a href="#다항-로지스틱-회귀-소프트맥스" id="toc-다항-로지스틱-회귀-소프트맥스" class="nav-link" data-scroll-target="#다항-로지스틱-회귀-소프트맥스">다항 로지스틱 회귀 &amp; 소프트맥스</a></li>
+  <li><a href="#로지스틱-회귀-모델-학습" id="toc-로지스틱-회귀-모델-학습" class="nav-link" data-scroll-target="#로지스틱-회귀-모델-학습">로지스틱 회귀 모델 학습</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="GBM.out.ipynb" download="GBM.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="로지스틱회귀.out.ipynb" download="로지스틱회귀.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">GBM</h1>
+<h1 class="title">로지스틱회귀</h1>
 </div>
 
 
@@ -216,7 +182,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 16, 2024</p>
+      <p class="date">March 24, 2024</p>
     </div>
   </div>
   
@@ -228,229 +194,59 @@ window.Quarto = {
 </header>
 
 
-<section id="gbm-gradient-boosting-machine" class="level1">
-<h1>GBM (Gradient Boosting Machine)</h1>
-<p><code>-</code> 다음은 <a href="https://en.wikipedia.org/wiki/Gradient_boosting">wikipedia</a>의 Gradient Boosting Algorithm입니다. 다음의 수식을 먼저 읽고 최대한 이해하려고 노력해봅시다.</p>
-<section id="algorithm" class="level2">
-<h2 class="anchored" data-anchor-id="algorithm">Algorithm</h2>
-<table class="table">
-<colgroup>
-<col style="width: 27%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>1. <strong>initialize model with a constant value:</strong><br>
-<span class="math inline">\(F_0(x) = \underset{\gamma}{\arg\min}\sum_{i=1}^n L(y_i, \gamma)\)</span></td>
-</tr>
-<tr class="even">
-<td>2. For m = 1 to M : 1. Compute so-called pseudo-residuals<br>
-<span class="math inline">\(r_{im} = - \Bigg[\displaystyle\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\Bigg]_{F(x) = F_{m-1}(x)}\)</span> for <span class="math inline">\(i = 1, ... ,n\)</span> 2. Fit a base learner (or weak learner, e.g.&nbsp;tree) closed under scaling <span class="math inline">\(h_m(x)\)</span> to pseuo-residuals, i.e.&nbsp;train it using the training set <span class="math inline">\(\{(x_i, r_{im})\}_{i=1}^{n}\)</span> 3. Compute multiplier <span class="math inline">\(\gamma_{m}\)</span> by solving the following one-dimensional optimization problem:<br>
-<span class="math inline">\(\gamma_m = \underset{\gamma}{\arg\min}\sum_{i=1}^n L(y_i, F_{m-1}(x_i) + \gamma h_m(x_i))\)</span> 4. Update the model:<br>
-<span class="math inline">\(F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)\)</span></td>
-</tr>
-<tr class="odd">
-<td>3. <strong>Output <span class="math inline">\(\hat{f(x)} = F_M(x)\)</span></strong></td>
-</tr>
-</tbody>
-</table>
-<p>수식으로만 완전히 이해하기가 어렵기 때문에 간단한 예시와 <code>pandas dataframe</code>을 이용하여 설명해보겠습니다.<br>
-다음과 같은 데이터가 있다고 가정해보겠습니다.</p>
-<div id="504f9bae-f503-421c-b970-31e8f7723ab8" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> [<span class="st">'학생1'</span>, <span class="st">'학생2'</span>, <span class="st">'학생3'</span>, <span class="st">'학생4'</span>]</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">'공부시간(m)'</span>:[<span class="dv">150</span>, <span class="dv">120</span>, <span class="dv">60</span>, <span class="dv">80</span>], <span class="st">'성별'</span>:[<span class="st">'여'</span>,<span class="st">'남'</span>,<span class="st">'남'</span>, <span class="st">'여'</span>], <span class="st">'수학점수'</span>:[<span class="dv">90</span>, <span class="dv">65</span>, <span class="dv">55</span>, <span class="st">'???'</span>]},index<span class="op">=</span>idx)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">공부시간(m)</th>
-<th data-quarto-table-cell-role="th">성별</th>
-<th data-quarto-table-cell-role="th">수학점수</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">학생1</td>
-<td>150</td>
-<td>여</td>
-<td>90</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">학생2</td>
-<td>120</td>
-<td>남</td>
-<td>65</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">학생3</td>
-<td>60</td>
-<td>남</td>
-<td>55</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">학생4</td>
-<td>80</td>
-<td>여</td>
-<td>???</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>다음과 같은 데이터가 있다고 할 때, 저희는 학생4의 <code>수학점수</code>를 <code>공부시간(m)</code>을 통하여 예측하고 싶습니다.</p>
-<section id="단계" class="level4">
-<h4 class="anchored" data-anchor-id="단계"><strong>1단계</strong></h4>
-<table class="table">
-<tbody>
-<tr class="odd">
-<td>1. <strong>initialize model with a constant value:</strong>\</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(F_0(x) = \underset{\gamma}{\arg\min}\sum_{i=1}^n L(y_i, \gamma)\)</span></td>
-</tr>
-</tbody>
-</table>
-<ol type="1">
-<li>초기모델을 상수로 정의합니다. 여기서 상수는 <span class="math inline">\(y_i\)</span>와 <span class="math inline">\(\gamma\)</span>입니다.</li>
-<li><span class="math inline">\(y_i\)</span>는 수학점수를 의미하고 <span class="math inline">\(\gamma\)</span>는 초기 예측값입니다.
-<ul>
-<li><span class="math inline">\(y_1\)</span> = 90, <span class="math inline">\(y_2\)</span> = 65, <span class="math inline">\(y_3\)</span> = 60</li>
-</ul></li>
-<li>여기서의 Loss Function <span class="math inline">\(L(y_i, \gamma) = \displaystyle\frac1n \sum_{i=1}^{n} (y_i - \gamma)^2\)</span>입니다. (잘 모르시는 분들은 MSE 학습하시면 좋을 것 같습니다.)</li>
-<li>예시의 수치를 대입하면<br>
-<span class="math inline">\(L(y_i, \gamma) = \displaystyle\frac13 \sum_{i=1}^{3} (y_i - \gamma)^2 =  \displaystyle\frac13(90 - \gamma)^2 + \displaystyle\frac13(65 - \gamma)^2 + \displaystyle\frac13(55 - \gamma)^2\)</span>입니다.</li>
-<li><span class="math inline">\(L(y_i, \gamma)\)</span>가 최소가 되는 <span class="math inline">\(\gamma\)</span>를 찾아야 하므로 <span class="math inline">\(\displaystyle\frac{\partial L}{\partial \gamma} = \displaystyle\frac23(\gamma - 90) + \displaystyle\frac23(\gamma - 65) + \displaystyle\frac23(\gamma - 55) = \displaystyle\frac23(3\gamma - 210)\)</span>입니다.</li>
-<li><span class="math inline">\(\displaystyle\frac{\partial L}{\partial \gamma} = 0\)</span>이 되어야 하므로 <span class="math inline">\(\gamma\)</span> = 70입니다. 따라서 초기 예측값 <span class="math inline">\(\gamma\)</span>는 70이 됩니다.</li>
-<li>초기 예측값을 이용한 첫번째 잔차는 각각 20, -5, -15가 됩니다.</li>
-</ol>
-<div id="48a410f7-0628-4ad2-8f6c-d7c12f26fc04" class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> [<span class="st">'Student1'</span>, <span class="st">'Student2'</span>, <span class="st">'Student3'</span>]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">'StudyTime(m)'</span>:[<span class="dv">150</span>, <span class="dv">120</span>, <span class="dv">60</span>], <span class="st">'Sex'</span>:[<span class="st">'female'</span>,<span class="st">'male'</span>,<span class="st">'male'</span>], </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'MathScore'</span>:[<span class="dv">90</span>, <span class="dv">65</span>, <span class="dv">55</span>], <span class="st">'F_0'</span>:[<span class="dv">70</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>)],<span class="st">'r1'</span>: [<span class="dv">20</span>, <span class="op">-</span><span class="dv">5</span>, <span class="op">-</span><span class="dv">15</span>]},index<span class="op">=</span>idx)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">StudyTime(m)</th>
-<th data-quarto-table-cell-role="th">Sex</th>
-<th data-quarto-table-cell-role="th">MathScore</th>
-<th data-quarto-table-cell-role="th">F_0</th>
-<th data-quarto-table-cell-role="th">r1</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Student1</td>
-<td>150</td>
-<td>female</td>
-<td>90</td>
-<td>70</td>
-<td>20</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Student2</td>
-<td>120</td>
-<td>male</td>
-<td>65</td>
-<td>70</td>
-<td>-5</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Student3</td>
-<td>60</td>
-<td>male</td>
-<td>55</td>
-<td>70</td>
-<td>-15</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p><code>-</code> 위의 데이터를 의사결정나무로 시각화를 하면 다음과 같습니다.</p>
-<div id="cb509d24-d29b-4a3a-9694-d5fa939a4bfa" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn.tree</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">## step1</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[[<span class="st">'StudyTime(m)'</span>]]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">'MathScore'</span>]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">## step2</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>predictr <span class="op">=</span> sklearn.tree.DecisionTreeRegressor(max_depth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">## step3</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>predictr.fit(x,y)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">## visualization</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>sklearn.tree.plot_tree(predictr,feature_names<span class="op">=</span>x.columns)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
+<section id="로지스틱-회귀logistic-regression" class="level2">
+<h2 class="anchored" data-anchor-id="로지스틱-회귀logistic-regression">로지스틱 회귀(Logistic Regression)</h2>
+<section id="베르누이-분포" class="level3">
+<h3 class="anchored" data-anchor-id="베르누이-분포">베르누이 분포</h3>
+<p><code>-</code> 베르누이 확률밀도함수(PDF)는 다음과 같습니다. * <span class="math inline">\(f(x|p) = p^x(1-p)^{1-x} (x=1,0)\)</span> * 즉 <span class="math inline">\(x=1\)</span>일 확률이 <span class="math inline">\(p\)</span>, <span class="math inline">\(x=0\)</span>일 확률이 <span class="math inline">\(1-p\)</span>입니다.</p>
+</section>
+<section id="logistic-function" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-function">Logistic Function</h3>
+<p><code>-</code> 승산비(<span class="math inline">\(odds\,ratio\)</span>) * 베르누이 분포에서 1이 나올 확률 <span class="math inline">\(p\)</span>와 0이 나올 확률 <span class="math inline">\(1-p\)</span>의 비율입니다. * <span class="math inline">\(odds\, ratio = \displaystyle\frac{p}{1-p}    \left(0\leq odds\,ratio\leq \infty \right) = \displaystyle\frac{\text{1일확률}}{\text{0일확률}}\)</span> * 확률 <span class="math inline">\(p\)</span>를 <span class="math inline">\(odds\,ratio\)</span>로 변환하면 0부터 무한대까지의 값을 가질 수 있다. * 승산비(<span class="math inline">\(odds\,ratio\)</span>)를 로그변환하면 다음과 같다. * <span class="math inline">\(z = logit\left(\displaystyle\frac{p}{1-p} \right) = log\left(\displaystyle\frac{p}{1-p}\right)\)</span></p>
+<p><code>-</code> 식을 다음과 같이 변환해보자<br>
+<span class="math inline">\(log\left(\displaystyle\frac{p}{1-p}\right) = z\)</span><br>
+<br>
+<span class="math inline">\(\Leftrightarrow \displaystyle\frac{p}{1-p} = e^z\)</span><br>
+<br>
+<span class="math inline">\(\Leftrightarrow p = e^z(1-p)\)</span><br>
+<br>
+<span class="math inline">\(\Leftrightarrow p = e^z - pe^k\)</span><br>
+<br>
+<span class="math inline">\(\Leftrightarrow p(1+e^z) = e^z\)</span><br>
+<br>
+<span class="math inline">\(\Leftrightarrow p = \displaystyle\frac{e^z}{1+e^z} = \displaystyle\frac{1}{1+e^{-z}}\)</span><br>
+<br>
+* 이처럼 <span class="math inline">\(logit\,function\)</span>의 역함수가 <span class="math inline">\(logistic\, function\)</span>이다. 따라서 * <span class="math inline">\(logistic(z) = \mu(z) = \displaystyle\frac{1}{1+e^{-z}}\)</span></p>
+<p><code>-</code> <span class="math inline">\(logistic\,function\)</span>의 그래프는 다음과 같다.<a href="https://en.wikipedia.org/wiki/Sigmoid_function">(출처)</a></p>
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="GBM_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Logistic-curve.svg/480px-Logistic-curve.svg.png" class="img-fluid figure-img"></p>
+<figcaption>sigmoid</figcaption>
 </figure>
 </div>
-</div>
-</div>
 </section>
-<section id="단계-1" class="level4">
-<h4 class="anchored" data-anchor-id="단계-1"><strong>2단계</strong></h4>
-<ol start="2" type="1">
-<li><strong>For <span class="math inline">\(m\)</span> = 1 to <span class="math inline">\(M\)</span></strong>:
-<ol type="1">
-<li>Compute so-called pseudo-residuals <span class="math inline">\(r_{im} = - \Bigg[\displaystyle\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\Bigg]_{F(x) = F_{m-1}(x)}\)</span> for <span class="math inline">\(i = 1, ... ,n\)</span></li>
-<li>Fit a base learner (or weak learner, e.g.&nbsp;tree) closed under scaling <span class="math inline">\(h_m(x)\)</span> to pseuo-residuals, i.e.&nbsp;train it using the training set <span class="math inline">\(\{(x_i, r_{im})\}_{i=1}^{n}\)</span></li>
-<li>Compute multiplier <span class="math inline">\(\gamma_{m}\)</span> by solving the following one-dimensional optimization problem:<br>
-<span class="math inline">\(\gamma_m = \underset{\gamma}{\arg\min}\sum_{i=1}^n L(y_i, F_{m-1}(x_i) + \gamma h_m(x_i))\)</span></li>
-<li>Update the model:<br>
-<span class="math inline">\(F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)\)</span></li>
-</ol></li>
-<li><code>A단계</code>부터 <code>D단계</code>를 총 <code>M번</code> 반복하는 단계입니다.</li>
-<li>여기서 <span class="math inline">\(M\)</span>은 예측기의 개수, <span class="math inline">\(n\)</span>은 데이터의 개수입니다.</li>
-<li>예측기에 번호를 붙여 <span class="math inline">\(m\)</span>=1인 경우는 1번 예측기 <span class="math inline">\(m=M\)</span>인 경우는 M번 예측기라고 부르겠습니다.</li>
-<li>1번 예측기(<span class="math inline">\(m=1\)</span>)가 생성 되는 과정을 살펴보겠습니다. <span class="math inline">\(L(y_i,F(x_i)) = \displaystyle\frac12(y_i - F(x_i))^2\)</span>이므로
+<section id="logistic-regression로지스틱-회귀" class="level3">
+<h3 class="anchored" data-anchor-id="logistic-regression로지스틱-회귀">Logistic Regression(로지스틱 회귀)</h3>
+<p><code>-</code> 그러다면 <span class="math inline">\(logistic function\)</span>을 왜 사용하는 것일까?</p>
+<div class="img-fluid quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="http://i.imgur.com/Co19p9c.png" class="img-fluid figure-img"></p>
+<figcaption>사진</figcaption>
+</figure>
+</div>
 <ul>
-<li><span class="math inline">\(r_{i1} = - \Bigg[\displaystyle\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\Bigg]_{F(x) = F_{0}(x)} = y_i - F_0(x_i)\)</span>입니다. (잔차와 식이 동일합니다.)</li>
-<li>0번 예측기 <span class="math inline">\(F_0(x)\)</span>는 1단계의 초기모델에서 생성되었습니다. 따라서 <span class="math inline">\(F_0(x)=70\)</span>입니다.(1단계 참고)</li>
-<li>따라서 <span class="math inline">\(r_{11}=20\)</span>, <span class="math inline">\(r_{21}=-5\)</span>, <span class="math inline">\(r_{31}=-15\)</span>입니다. 1단계 표에 있는 잔차1과 같습니다.</li>
-<li>함수<span class="math inline">\(h_1(x)\)</span>는 앞서 계산한 잔차를 트리 계열로 학습합니다.(의사 결정 나무에 대해서는 추후에 업로드 하겠습니다.)</li>
-<li>모든 데이터(<span class="math inline">\(n=3\)</span>)에 대해서 <span class="math inline">\(\sum_{i=1}^{3} L(y_i, F_0(x_i) + \gamma h_m(x_i)\)</span> 식이 최소가 되는 <span class="math inline">\(\gamma\)</span>(learning rate)를 찾습니다.(<span class="math inline">\(\gamma = \gamma_{1}\)</span>)</li>
-<li>모델을 업데이트 합니다 : <span class="math inline">\(F_1(x) = F_0(x) + \gamma_1 h_1(x)\)</span></li>
-</ul></li>
-<li>4번의 과정을 M번 반복합니다.</li>
-</ol>
-<p><code>-</code> 추가설명</p>
+<li>나이에 따른 질병 유무에 대한 분류문제를 해결해야한다고 가정해보자.<a href="http://i.imgur.com/Co19p9c.png">사진출처 : ratsgo’s blog</a></li>
+<li>그림과 같이 분류 문제를 선형 회귀로 해결하려고 하면 그림이 많이 이상해집니다.</li>
+<li>따라서 앞서 언급한 <span class="math inline">\(logistic\,function\)</span>을 이용하여 문제를 해결합니다. <span class="math inline">\(logistic\,function(z) = \displaystyle\frac{1}{1+e^{-z}} = \begin{cases}1&amp;z&gt;\frac12\\\frac12&amp;z=\frac12\\0&amp;z&lt;\frac12\end{cases}\)</span></li>
+</ul>
 </section>
-<section id="단계-2" class="level4">
-<h4 class="anchored" data-anchor-id="단계-2"><strong>3단계</strong></h4>
-<table class="table">
-<tbody>
-<tr class="odd">
-<td>3. <strong>Output <span class="math inline">\(\hat{f(x)} = F_M(x)\)</span></strong></td>
-</tr>
-</tbody>
-</table>
-<ol type="1">
-<li>최종 모델을 산출합니다.</li>
-</ol>
+<section id="다항-로지스틱-회귀-소프트맥스" class="level3">
+<h3 class="anchored" data-anchor-id="다항-로지스틱-회귀-소프트맥스">다항 로지스틱 회귀 &amp; 소프트맥스</h3>
+<p>(추가 업로드 예정)</p>
 </section>
-</section>
-<section id="코드-구현" class="level2">
-<h2 class="anchored" data-anchor-id="코드-구현">코드 구현</h2>
-<p>(추후 업로드 예정)</p>
+<section id="로지스틱-회귀-모델-학습" class="level3">
+<h3 class="anchored" data-anchor-id="로지스틱-회귀-모델-학습">로지스틱 회귀 모델 학습</h3>
+<p>(추가 업로드 예정)</p>
 
 
 </section>
