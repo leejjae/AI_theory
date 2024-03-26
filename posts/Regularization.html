@@ -8,7 +8,7 @@
 
 <meta name="author" content="이정재">
 
-<title>AI_theory</title>
+<title>AI_theory - Regularization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,24 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,35 +67,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -129,7 +98,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -139,7 +108,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AI_theory</span>
     </a>
   </div>
@@ -150,7 +119,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -171,21 +140,37 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#regularization" id="toc-regularization" class="nav-link active" data-scroll-target="#regularization">Regularization</a>
+  <ul class="collapse">
+  <li><a href="#preview" id="toc-preview" class="nav-link" data-scroll-target="#preview">0. Preview</a></li>
+  <li><a href="#lidge" id="toc-lidge" class="nav-link" data-scroll-target="#lidge">1. Lidge</a></li>
+  <li><a href="#lasso" id="toc-lasso" class="nav-link" data-scroll-target="#lasso">2. Lasso</a>
+  <ul class="collapse">
+  <li><a href="#question" id="toc-question" class="nav-link" data-scroll-target="#question">3. Question</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Regularization.out.ipynb" download="Regularization.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AI_theory</h1>
+<h1 class="title">Regularization</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -203,131 +188,48 @@ window.Quarto = {
 </header>
 
 
+<section id="regularization" class="level1">
+<h1>Regularization</h1>
+<section id="preview" class="level2">
+<h2 class="anchored" data-anchor-id="preview">0. Preview</h2>
+<p><span class="math inline">\(\begin{align}
+    E(MSE) &amp; =E\left[(Y-\hat{Y})^2|X\right]\\
+        &amp; =E\left(Y^2-2Y\hat{Y}+\hat{Y}^2 |X\right)\\
+        &amp; = \sigma^2  + \left\{E(\hat{Y}) - \hat{Y} \right\}^2\\
+        &amp; = \sigma^2 + \text{Bias}\left(\hat{Y}\right) + \text{Var}(\hat{Y})
+\end{align}\)</span></p>
+<p><span class="math inline">\(\hat{\beta}^{\text{LS}} = \underset{\beta}\arg\min \left\{\displaystyle\sum_{i=1}^{n} (y-x_i\beta)^2\right\}\)</span><br>
+<span class="math inline">\(\Rightarrow \hat{\beta}^{\text{LS}} : \text{unbiased estimator}\)</span><br>
+<span class="math inline">\(\Rightarrow\)</span> 아이디어 : Bias가 올라가더라도 Variance를 더 낮출 수 있지 않을까?</p>
+<p><span class="math display">\[\text{Notation}\]</span> <span class="math display">\[\hat{y} = \beta_1x_1 + \beta_2x_2 + ... + \beta_{p}x_p\]</span> <span class="math display">\[\text{or}\]</span> <span class="math display">\[\hat{y} = \beta_1x + \beta_2x^2 + ... + \beta_{p}x^p\]</span></p>
+</section>
+<section id="lidge" class="level2">
+<h2 class="anchored" data-anchor-id="lidge">1. Lidge</h2>
+<p><span class="math inline">\(L(\beta)=\underset{\beta}\min \displaystyle\sum_{i=1}^{n} (y_i-\hat{y}_i)^2 + \lambda \displaystyle\sum_{j=1}^{p} \beta_j^2 (\lambda : \text{hyper parameter})\)</span></p>
+<p><code>-</code> if) <span class="math inline">\(\lambda = \infty\)</span><br>
+<span class="math inline">\(\Rightarrow \beta_k \approx 0(1 \leqq k \leqq p)\)</span><br>
+<span class="math inline">\(\Rightarrow \text{Underfitting}\)</span></p>
+<p><code>-</code> if) <span class="math inline">\(\lambda=0\)</span><br>
+<span class="math inline">\(\Rightarrow \text{Overfitting(LSE)}\)</span></p>
+</section>
+<section id="lasso" class="level2">
+<h2 class="anchored" data-anchor-id="lasso">2. Lasso</h2>
+<p><span class="math inline">\(L(\beta) = \underset{\beta}\arg\min \left\{\displaystyle\sum_{i=1}^{n}(y_i-\hat{y})^2+\lambda\displaystyle\sum_{j=1}^{p}\vert \beta_j\vert\right\}\)</span></p>
+<p><code>-</code> if) <span class="math inline">\(\lambda = \infty\)</span><br>
+<span class="math inline">\(\Rightarrow \beta_k \approx 0(1 \leqq k \leqq p)\)</span><br>
+<span class="math inline">\(\Rightarrow \text{Underfitting}\)</span></p>
+<p><code>-</code> if) <span class="math inline">\(\lambda=0\)</span><br>
+<span class="math inline">\(\Rightarrow \text{Overfitting(LSE)}\)</span></p>
+<section id="question" class="level3">
+<h3 class="anchored" data-anchor-id="question">3. Question</h3>
+<p>Hyper parameter <span class="math inline">\(\lambda\)</span>를 구하는 방법은?</p>
 
 
+</section>
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-<th>
-Author
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1711445176177" data-listing-reading-time-sort="1" data-listing-word-count-sort="134" data-listing-title-sort="Regularization" data-listing-filename-sort="Regularization.ipynb">
-<td>
-<span class="listing-date">&nbsp;</span>
-</td>
-<td>
-<a href="./posts/Regularization.html" class="title listing-title">Regularization</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="1" data-listing-file-modified-sort="1711326211155" data-listing-filename-sort="Untitled.ipynb">
-<td>
-<span class="listing-date">&nbsp;</span>
-</td>
-<td>
-<a href="./posts/Untitled.html" class="title listing-title">&nbsp;</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1711326211167" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="JBIG코드실습_타이타닉(2주차)" data-listing-filename-sort="JBIG코드실습_타이타닉(2주차).ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_타이타닉(2주차).html" class="title listing-title">JBIG코드실습_타이타닉(2주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1711288621950" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="373" data-listing-title-sort="랜덤포레스트(배깅,보팅)" data-listing-filename-sort="랜덤포레스트.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/랜덤포레스트.html" class="title listing-title">랜덤포레스트(배깅,보팅)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1711288624618" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="181" data-listing-title-sort="로지스틱회귀" data-listing-filename-sort="로지스틱회귀.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/로지스틱회귀.html" class="title listing-title">로지스틱회귀</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1711326211215" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="144" data-listing-title-sort="의사결정나무" data-listing-filename-sort="의사결정나무.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/의사결정나무.html" class="title listing-title">의사결정나무</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="6" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1711326221115" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="JBIG코드실습_타이타닉(1주차)" data-listing-filename-sort="JBIG코드실습_타이타닉1.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_타이타닉1.html" class="title listing-title">JBIG코드실습_타이타닉(1주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1711033200000" data-listing-file-modified-sort="1711093766676" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="652" data-listing-title-sort="ANN(1) - ANN의 구조" data-listing-filename-sort="ANN(1) - ANN's Structure.ipynb">
-<td>
-<span class="listing-date">Mar 22, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(1) - ANN's Structure.html" class="title listing-title">ANN(1) - ANN의 구조</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="8" data-listing-date-sort="1710514800000" data-listing-file-modified-sort="1711288497149" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="592" data-listing-title-sort="GBM" data-listing-filename-sort="GBM.ipynb">
-<td>
-<span class="listing-date">Mar 16, 2024</span>
-</td>
-<td>
-<a href="./posts/GBM.html" class="title listing-title">GBM</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

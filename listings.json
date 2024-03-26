@@ -2,12 +2,13 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Regularization.html",
       "/posts/Untitled.html",
       "/posts/JBIG코드실습_타이타닉(2주차).html",
+      "/posts/랜덤포레스트.html",
       "/posts/로지스틱회귀.html",
+      "/posts/의사결정나무.html",
       "/posts/JBIG코드실습_타이타닉1.html",
-      "/posts/test1/랜덤포레스트.html",
-      "/posts/test1/의사결정나무.html",
       "/posts/ANN(1) - ANN's Structure.html",
       "/posts/GBM.html"
     ]
