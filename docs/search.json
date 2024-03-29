@@ -56,8 +56,8 @@
     "text": "\\(\\begin{align}\n    E(MSE) & =E\\left[(Y-\\hat{Y})^2|X\\right]\\\\\n        & =E\\left(Y^2-2Y\\hat{Y}+\\hat{Y}^2 |X\\right)\\\\\n        & = \\sigma^2  + \\left\\{E(\\hat{Y}) - \\hat{Y} \\right\\}^2\\\\\n        & = \\sigma^2 + \\text{Bias}\\left(\\hat{Y}\\right) + \\text{Var}(\\hat{Y})\n\\end{align}\\)\n\\(\\hat{\\beta}^{\\text{LS}} = \\underset{\\beta}\\arg\\min \\left\\{\\displaystyle\\sum_{i=1}^{n} (y-x_i\\beta)^2\\right\\}\\)\n\\(\\Rightarrow \\hat{\\beta}^{\\text{LS}} : \\text{unbiased estimator}\\)\n\\(\\Rightarrow\\) 아이디어 : Bias가 올라가더라도 Variance를 더 낮출 수 있지 않을까?\n\\[\\text{Notation}\\] \\[\\hat{y} = \\beta_1x_1 + \\beta_2x_2 + ... + \\beta_{p}x_p\\] \\[\\text{or}\\] \\[\\hat{y} = \\beta_1x + \\beta_2x^2 + ... + \\beta_{p}x^p\\]"
   },
   {
-    "objectID": "posts/Regularization.html#lidge",
-    "href": "posts/Regularization.html#lidge",
+    "objectID": "posts/Regularization.html#ridge",
+    "href": "posts/Regularization.html#ridge",
     "title": "Regularization",
     "section": "",
     "text": "\\(L(\\beta)=\\underset{\\beta}\\min \\displaystyle\\sum_{i=1}^{n} (y_i-\\hat{y}_i)^2 + \\lambda \\displaystyle\\sum_{j=1}^{p} \\beta_j^2 (\\lambda : \\text{hyper parameter})\\)\n- if) \\(\\lambda = \\infty\\)\n\\(\\Rightarrow \\beta_k \\approx 0(1 \\leqq k \\leqq p)\\)\n\\(\\Rightarrow \\text{Underfitting}\\)\n- if) \\(\\lambda=0\\)\n\\(\\Rightarrow \\text{Overfitting(LSE)}\\)"

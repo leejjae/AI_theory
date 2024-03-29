@@ -152,7 +152,7 @@ window.Quarto = {
   <li><a href="#regularization" id="toc-regularization" class="nav-link active" data-scroll-target="#regularization">Regularization</a>
   <ul class="collapse">
   <li><a href="#preview" id="toc-preview" class="nav-link" data-scroll-target="#preview">0. Preview</a></li>
-  <li><a href="#lidge" id="toc-lidge" class="nav-link" data-scroll-target="#lidge">1. Lidge</a></li>
+  <li><a href="#ridge" id="toc-ridge" class="nav-link" data-scroll-target="#ridge">1. Ridge</a></li>
   <li><a href="#lasso" id="toc-lasso" class="nav-link" data-scroll-target="#lasso">2. Lasso</a>
   <ul class="collapse">
   <li><a href="#question" id="toc-question" class="nav-link" data-scroll-target="#question">3. Question</a></li>
@@ -210,8 +210,8 @@ window.Quarto = {
 <span class="math inline">\(\Rightarrow\)</span> 아이디어 : Bias가 올라가더라도 Variance를 더 낮출 수 있지 않을까?</p>
 <p><span class="math display">\[\text{Notation}\]</span> <span class="math display">\[\hat{y} = \beta_1x_1 + \beta_2x_2 + ... + \beta_{p}x_p\]</span> <span class="math display">\[\text{or}\]</span> <span class="math display">\[\hat{y} = \beta_1x + \beta_2x^2 + ... + \beta_{p}x^p\]</span></p>
 </section>
-<section id="lidge" class="level2">
-<h2 class="anchored" data-anchor-id="lidge">1. Lidge</h2>
+<section id="ridge" class="level2">
+<h2 class="anchored" data-anchor-id="ridge">1. Ridge</h2>
 <p><span class="math inline">\(L(\beta)=\underset{\beta}\min \displaystyle\sum_{i=1}^{n} (y_i-\hat{y}_i)^2 + \lambda \displaystyle\sum_{j=1}^{p} \beta_j^2 (\lambda : \text{hyper parameter})\)</span></p>
 <p><code>-</code> if) <span class="math inline">\(\lambda = \infty\)</span><br>
 <span class="math inline">\(\Rightarrow \beta_k \approx 0(1 \leqq k \leqq p)\)</span><br>
