@@ -2,7 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Untitled1.html",
       "/posts/Untitled.html",
+      "/posts/Untitled2.html",
+      "/posts/JBIG코드실습_풍속예측(2주차).html",
+      "/posts/VG_Optim.html",
       "/posts/Regularization.html",
       "/posts/JBIG코드실습_타이타닉(2주차).html",
       "/posts/랜덤포레스트.html",
