@@ -311,8 +311,8 @@ $Vdw := 0.9V dw + 0.1 dw <span class="math inline">\(\
 <h3 class="anchored" data-anchor-id="adamadaptive-momentum-estimation-rmsprop-momentum">Adam(Adaptive Momentum Estimation) : RMSprop <strong>+</strong> Momentum</h3>
 <p><span class="math inline">\(m_0 = 0 \, , \, v_0 = 0\)</span><br>
 <span class="math inline">\(m_{t+1} := \beta_1 \cdot m_t + (1-\beta_1) \cdot \displaystyle\frac{\partial L}{\partial \theta}\)</span><br>
-$v_{t+1} := _2 v_m + (1-_2) ()^2 <span class="math inline">\(\
-\)</span>:= - $</p>
+$v_{t+1} := _2 v_m + (1-_2) ()^2 $</p>
+<p><span class="math inline">\(\theta := \theta - \displaystyle\frac{\epsilon}{\sqrt{v_t} + e^{-5}}\)</span></p>
 
 
 </section>
