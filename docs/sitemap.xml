@@ -2,54 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://leejjae.github.io/AI_theory/about.html</loc>
-    <lastmod>2024-03-16T10:33:49.168Z</lastmod>
+    <lastmod>2024-05-03T07:23:53.554Z</lastmod>
   </url>
   <url>
     <loc>https://leejjae.github.io/AI_theory/Untitled1.html</loc>
-    <lastmod>2024-03-29T07:10:18.493Z</lastmod>
+    <lastmod>2024-05-03T07:23:53.546Z</lastmod>
   </url>
   <url>
     <loc>https://leejjae.github.io/AI_theory/posts/ANN(1) - ANN's Structure.html</loc>
-    <lastmod>2024-04-04T23:53:04.294Z</lastmod>
-  </url>
-  <url>
-    <loc>https://leejjae.github.io/AI_theory/posts/ANN(2).html</loc>
-    <lastmod>2024-04-05T03:02:30.400Z</lastmod>
-  </url>
-  <url>
-    <loc>https://leejjae.github.io/AI_theory/posts/JBIG코드실습_타이타닉1.html</loc>
-    <lastmod>2024-04-05T03:02:27.368Z</lastmod>
-  </url>
-  <url>
-    <loc>https://leejjae.github.io/AI_theory/posts/로지스틱회귀.html</loc>
-    <lastmod>2024-03-24T13:57:04.618Z</lastmod>
-  </url>
-  <url>
-    <loc>https://leejjae.github.io/AI_theory/posts/JBIG코드실습_타이타닉(2주차).html</loc>
-    <lastmod>2024-04-04T23:54:07.914Z</lastmod>
-  </url>
-  <url>
-    <loc>https://leejjae.github.io/AI_theory/posts/랜덤포레스트.html</loc>
-    <lastmod>2024-03-26T09:43:55.295Z</lastmod>
-  </url>
-  <url>
-    <loc>https://leejjae.github.io/AI_theory/posts/의사결정나무.html</loc>
-    <lastmod>2024-04-04T23:54:11.886Z</lastmod>
-  </url>
-  <url>
-    <loc>https://leejjae.github.io/AI_theory/posts/GBM.html</loc>
-    <lastmod>2024-04-04T23:54:16.794Z</lastmod>
+    <lastmod>2024-05-03T07:23:53.646Z</lastmod>
   </url>
   <url>
     <loc>https://leejjae.github.io/AI_theory/posts/JBIG코드실습_풍속예측(2주차).html</loc>
-    <lastmod>2024-04-04T23:53:52.178Z</lastmod>
+    <lastmod>2024-05-03T07:23:53.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://leejjae.github.io/AI_theory/posts/GBM.html</loc>
+    <lastmod>2024-05-03T07:23:53.650Z</lastmod>
+  </url>
+  <url>
+    <loc>https://leejjae.github.io/AI_theory/posts/의사결정나무.html</loc>
+    <lastmod>2024-05-03T07:23:53.658Z</lastmod>
+  </url>
+  <url>
+    <loc>https://leejjae.github.io/AI_theory/posts/랜덤포레스트.html</loc>
+    <lastmod>2024-05-03T07:23:53.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://leejjae.github.io/AI_theory/posts/JBIG코드실습_타이타닉(2주차).html</loc>
+    <lastmod>2024-05-03T07:23:53.650Z</lastmod>
+  </url>
+  <url>
+    <loc>https://leejjae.github.io/AI_theory/posts/로지스틱회귀.html</loc>
+    <lastmod>2024-05-03T07:23:53.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://leejjae.github.io/AI_theory/posts/JBIG코드실습_타이타닉1.html</loc>
+    <lastmod>2024-05-03T07:23:53.654Z</lastmod>
+  </url>
+  <url>
+    <loc>https://leejjae.github.io/AI_theory/posts/ANN(2).html</loc>
+    <lastmod>2024-05-03T07:23:53.646Z</lastmod>
+  </url>
+  <url>
+    <loc>https://leejjae.github.io/AI_theory/posts/CNN.html</loc>
+    <lastmod>2024-05-03T04:46:46.636Z</lastmod>
   </url>
   <url>
     <loc>https://leejjae.github.io/AI_theory/posts/ANN(3) - Overfitting.html</loc>
-    <lastmod>2024-04-05T03:02:33.468Z</lastmod>
+    <lastmod>2024-05-03T07:23:53.650Z</lastmod>
   </url>
   <url>
     <loc>https://leejjae.github.io/AI_theory/index.html</loc>
-    <lastmod>2024-03-21T02:40:46.765Z</lastmod>
+    <lastmod>2024-05-03T07:23:53.618Z</lastmod>
   </url>
 </urlset>

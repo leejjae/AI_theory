@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/CNN.html",
       "/posts/JBIG코드실습_풍속예측(2주차).html",
       "/posts/ANN(3) - Overfitting.html",
       "/posts/ANN(2).html",

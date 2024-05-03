@@ -185,15 +185,32 @@ window.Quarto = {
   <ul>
   <li><a href="#data-augmentation" id="toc-data-augmentation" class="nav-link active" data-scroll-target="#data-augmentation">Data Augmentation</a>
   <ul class="collapse">
-  <li><a href="#first-example" id="toc-first-example" class="nav-link" data-scroll-target="#first-example">First Example</a></li>
+  <li><a href="#resize-and-rescale" id="toc-resize-and-rescale" class="nav-link" data-scroll-target="#resize-and-rescale">Resize and Rescale</a></li>
+  <li><a href="#random-rotate-and-flip" id="toc-random-rotate-and-flip" class="nav-link" data-scroll-target="#random-rotate-and-flip">Random rotate and flip</a></li>
+  <li><a href="#flip-left-to-right" id="toc-flip-left-to-right" class="nav-link" data-scroll-target="#flip-left-to-right">Flip left to right</a></li>
+  <li><a href="#grayscale" id="toc-grayscale" class="nav-link" data-scroll-target="#grayscale">Grayscale</a></li>
+  <li><a href="#adjusting-the-saturation" id="toc-adjusting-the-saturation" class="nav-link" data-scroll-target="#adjusting-the-saturation">Adjusting the saturation</a></li>
+  <li><a href="#adjusting-the-brightness" id="toc-adjusting-the-brightness" class="nav-link" data-scroll-target="#adjusting-the-brightness">Adjusting the brightness</a></li>
+  <li><a href="#central-crop" id="toc-central-crop" class="nav-link" data-scroll-target="#central-crop">Central Crop</a></li>
+  <li><a href="#degree-rotation" id="toc-degree-rotation" class="nav-link" data-scroll-target="#degree-rotation">90-degree rotation</a></li>
+  <li><a href="#applying-random-brightness" id="toc-applying-random-brightness" class="nav-link" data-scroll-target="#applying-random-brightness">Applying random brightness</a></li>
   </ul></li>
-  <li><a href="#dropout" id="toc-dropout" class="nav-link" data-scroll-target="#dropout">Dropout</a></li>
+  <li><a href="#dropout" id="toc-dropout" class="nav-link" data-scroll-target="#dropout">Dropout</a>
+  <ul class="collapse">
+  <li><a href="#figure1" id="toc-figure1" class="nav-link" data-scroll-target="#figure1">Figure1</a></li>
+  <li><a href="#figure2" id="toc-figure2" class="nav-link" data-scroll-target="#figure2">Figure2</a></li>
+  <li><a href="#figure3" id="toc-figure3" class="nav-link" data-scroll-target="#figure3">Figure3</a></li>
+  </ul></li>
   <li><a href="#dropconnect" id="toc-dropconnect" class="nav-link" data-scroll-target="#dropconnect">Dropconnect</a>
   <ul class="collapse">
-  <li><a href="#regularization" id="toc-regularization" class="nav-link" data-scroll-target="#regularization">Regularization</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  </ul></li>
+  <li><a href="#regularization" id="toc-regularization" class="nav-link" data-scroll-target="#regularization">Regularization</a>
+  <ul class="collapse">
   <li><a href="#ridge" id="toc-ridge" class="nav-link" data-scroll-target="#ridge">Ridge</a></li>
   <li><a href="#lasso" id="toc-lasso" class="nav-link" data-scroll-target="#lasso">Lasso</a></li>
   <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
+  <li><a href="#판별식" id="toc-판별식" class="nav-link" data-scroll-target="#판별식">판별식</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ANN(3) - Overfitting.out.ipynb" download="ANN(3) - Overfitting.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
@@ -277,10 +294,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="first-example" class="level3">
-<h3 class="anchored" data-anchor-id="first-example">First Example</h3>
-<section id="resize-and-rescale" class="level4">
-<h4 class="anchored" data-anchor-id="resize-and-rescale">Resize and Rescale</h4>
+<section id="resize-and-rescale" class="level3">
+<h3 class="anchored" data-anchor-id="resize-and-rescale">Resize and Rescale</h3>
 <div id="428a57e8-735e-47ee-a91c-96be7499d211" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>IMG_SIZE <span class="op">=</span> <span class="dv">180</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>resize_and_rescale <span class="op">=</span> keras.Sequential([</span>
@@ -300,8 +315,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="random-rotate-and-flip" class="level4">
-<h4 class="anchored" data-anchor-id="random-rotate-and-flip">Random rotate and flip</h4>
+<section id="random-rotate-and-flip" class="level3">
+<h3 class="anchored" data-anchor-id="random-rotate-and-flip">Random rotate and flip</h3>
 <div id="ec2cb3b8-97cc-45e7-872f-a15c3afc2101" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_augmentation <span class="op">=</span> keras.Sequential([</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    layers.RandomFlip(<span class="st">"horizontal_and_vertical"</span>),</span>
@@ -348,8 +363,8 @@ window.Quarto = {
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="flip-left-to-right" class="level4">
-<h4 class="anchored" data-anchor-id="flip-left-to-right">Flip left to right</h4>
+<section id="flip-left-to-right" class="level3">
+<h3 class="anchored" data-anchor-id="flip-left-to-right">Flip left to right</h3>
 <div id="0d279dd1-e0f1-46f1-b25f-83602238066c" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>flipped <span class="op">=</span> tf.image.flip_left_right(image)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>visualize(image, flipped)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -362,8 +377,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="grayscale" class="level4">
-<h4 class="anchored" data-anchor-id="grayscale">Grayscale</h4>
+<section id="grayscale" class="level3">
+<h3 class="anchored" data-anchor-id="grayscale">Grayscale</h3>
 <div id="9172f281-fe9d-4504-9d5a-87086c6ae67d" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>grayscale <span class="op">=</span> tf.image.rgb_to_grayscale(image)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>visualize(image, tf.squeeze(grayscale))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -376,8 +391,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="adjusting-the-saturation" class="level4">
-<h4 class="anchored" data-anchor-id="adjusting-the-saturation">Adjusting the saturation</h4>
+<section id="adjusting-the-saturation" class="level3">
+<h3 class="anchored" data-anchor-id="adjusting-the-saturation">Adjusting the saturation</h3>
 <div id="ccbe29f5-5521-4ebd-897e-156d1924473a" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>saturated <span class="op">=</span> tf.image.adjust_saturation(image, <span class="dv">3</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>visualize(image, saturated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -390,8 +405,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="adjusting-the-brightness" class="level4">
-<h4 class="anchored" data-anchor-id="adjusting-the-brightness">Adjusting the brightness</h4>
+<section id="adjusting-the-brightness" class="level3">
+<h3 class="anchored" data-anchor-id="adjusting-the-brightness">Adjusting the brightness</h3>
 <div id="874c722f-a80f-41c4-b85f-168fe5f31d4c" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bright <span class="op">=</span> tf.image.adjust_brightness(image, <span class="fl">0.4</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>visualize(image, bright)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -404,8 +419,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="central-crop" class="level4">
-<h4 class="anchored" data-anchor-id="central-crop">Central Crop</h4>
+<section id="central-crop" class="level3">
+<h3 class="anchored" data-anchor-id="central-crop">Central Crop</h3>
 <div id="3410cfae-6b4b-471d-8154-2336ce4efa8d" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>cropped <span class="op">=</span> tf.image.central_crop(image, central_fraction<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>visualize(image, cropped)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -418,8 +433,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="degree-rotation" class="level4">
-<h4 class="anchored" data-anchor-id="degree-rotation">90-degree rotation</h4>
+<section id="degree-rotation" class="level3">
+<h3 class="anchored" data-anchor-id="degree-rotation">90-degree rotation</h3>
 <div id="4f21da15-1450-40e9-b95a-0709b7da8d94" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rotated <span class="op">=</span> tf.image.rot90(image)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>visualize(image, rotated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -432,8 +447,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="applying-random-brightness" class="level4">
-<h4 class="anchored" data-anchor-id="applying-random-brightness">Applying random brightness</h4>
+<section id="applying-random-brightness" class="level3">
+<h3 class="anchored" data-anchor-id="applying-random-brightness">Applying random brightness</h3>
 <div id="1e9d4c25-1f3e-4ab7-8fdb-ab4a4bc1e195" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  seed <span class="op">=</span> (i, <span class="dv">0</span>)  <span class="co"># tuple of size (2,)</span></span>
@@ -464,30 +479,45 @@ window.Quarto = {
 </div>
 </section>
 </section>
-</section>
 <section id="dropout" class="level2">
 <h2 class="anchored" data-anchor-id="dropout">Dropout</h2>
-<p><strong>Figure 1</strong> <img src="https://velog.velcdn.com/images/nochesita/post/8f8a2c9e-dfa8-4417-86ae-18d27a07b177/image.png" class="img-fluid"></p>
+<section id="figure1" class="level3">
+<h3 class="anchored" data-anchor-id="figure1">Figure1</h3>
+<p><img src="https://velog.velcdn.com/images/nochesita/post/8f8a2c9e-dfa8-4417-86ae-18d27a07b177/image.png" class="img-fluid"></p>
 <ul>
 <li>(a)는 Standard Neural Net(FC layer)으로, 모든 노드가 연결되어 있습니다.</li>
 <li>(b)는 Dropout을 적용한 Neural Net으로, 무작위로 노드가 끊어져있습니다.<br>
 <span class="math inline">\(\rightarrow\)</span> 무작위로 노드를 끊음으로써 과적합 방지를 할 수 있습니다.</li>
 <li>Mini-batch학습을 시킬 때마다 활용되는 node들의 평균을 이용합니다.</li>
 </ul>
-<p><strong>Figure 2</strong> <img src="https://velog.velcdn.com/images/nochesita/post/5cbbf9b1-a445-4d6c-998d-6bf2bb3c51ce/image.png" class="img-fluid"></p>
-<p><code>-</code> 그렇다면 test시 노드들은 어떻게 적용이 될까요? * train에서는 확률 <span class="math inline">\(p\)</span>에 의해 노드에 연결될 수도, 안될 수도 있습니다. * test에서는 각 노드의 가중치에 확률을 곱한 <span class="math inline">\(pw\)</span>를 가중치로 사용합니다.<br>
-(이 부분이 이해가 잘…)</p>
-<p><strong>Figure 3</strong> <img src="https://velog.velcdn.com/images/nochesita/post/d1ce6ed7-d7c1-4282-aab7-62852ecb81f8/image.png" class="img-fluid"></p>
+</section>
+<section id="figure2" class="level3">
+<h3 class="anchored" data-anchor-id="figure2">Figure2</h3>
+<p><img src="https://velog.velcdn.com/images/nochesita/post/5cbbf9b1-a445-4d6c-998d-6bf2bb3c51ce/image.png" class="img-fluid"></p>
 <ul>
-<li>레이어 : <span class="math inline">\(l \in \left\{1,, ... , L\right\}\)</span></li>
-<li><span class="math inline">\(z^{(l)}\)</span> : <span class="math inline">\(l\)</span>의 출력 벡터</li>
-<li><span class="math inline">\(y^{(l)}\)</span> : <span class="math inline">\(l\)</span>의 입력 벡터</li>
-<li><span class="math inline">\(W^{(l)}\)</span> : <span class="math inline">\(l\)</span>의 가중치(weight)행렬</li>
-<li><span class="math inline">\(b^{(l)}\)</span> : <span class="math inline">\(l\)</span>의 편향(bias) 벡터</li>
+<li>그렇다면 test시 노드들은 어떻게 적용이 될까요?</li>
+<li>train에서는 확률 <span class="math inline">\(p\)</span>에 의해 노드에 연결될 수도, 안될 수도 있습니다.</li>
+<li>test에서는 각 노드의 가중치에 확률을 곱한 <span class="math inline">\(pw\)</span>를 가중치로 사용합니다.<br>
+(이 부분이 이해가 잘…)</li>
 </ul>
-<p><code>-</code> Forward Propagation<br>
-<span class="math inline">\(z_i^{(l+1)} = w_i^{(l+1)}y^l + b_i^{(l+1)}\)</span> , <span class="math inline">\(y_i^{(l+1)} = f(z_i^{(l+1)})\)</span> (<span class="math inline">\(f\)</span> : Activation Function)</p>
-<p><code>-</code> Dropout * <span class="math inline">\(r_j^{(l)} \sim Bernoulli(p)\)</span> * <span class="math inline">\(\tilde{y}^{(l)} = r^{(l)}y^{(l)}\)</span> * <span class="math inline">\(z_i^{(l+1)} = w_i^{(l+1)}\tilde{y}^l + b_i^{(l+1)}\)</span> * <span class="math inline">\(z_i^{(l+1)} = w_i^{(l+1)}y^l + b_i^{(l+1)}\)</span></p>
+</section>
+<section id="figure3" class="level3">
+<h3 class="anchored" data-anchor-id="figure3">Figure3</h3>
+<p><img src="https://velog.velcdn.com/images/nochesita/post/d1ce6ed7-d7c1-4282-aab7-62852ecb81f8/image.png" class="img-fluid"></p>
+<ul>
+<li><p>레이어 : <span class="math inline">\(l \in \left\{1,, ... , L\right\}\)</span></p></li>
+<li><p><span class="math inline">\(z^{(l)}\)</span> : <span class="math inline">\(l\)</span>의 출력 벡터</p></li>
+<li><p><span class="math inline">\(y^{(l)}\)</span> : <span class="math inline">\(l\)</span>의 입력 벡터</p></li>
+<li><p><span class="math inline">\(W^{(l)}\)</span> : <span class="math inline">\(l\)</span>의 가중치(weight)행렬</p></li>
+<li><p><span class="math inline">\(b^{(l)}\)</span> : <span class="math inline">\(l\)</span>의 편향(bias) 벡터</p></li>
+<li><p>Forward Propagation<br>
+<span class="math inline">\(z_i^{(l+1)} = w_i^{(l+1)}y^l + b_i^{(l+1)}\)</span> , <span class="math inline">\(y_i^{(l+1)} = f(z_i^{(l+1)})\)</span> (<span class="math inline">\(f\)</span> : Activation Function)</p></li>
+<li><p><span class="math inline">\(r_j^{(l)} \sim Bernoulli(p)\)</span></p></li>
+<li><p><span class="math inline">\(\tilde{y}^{(l)} = r^{(l)}y^{(l)}\)</span></p></li>
+<li><p><span class="math inline">\(z_i^{(l+1)} = w_i^{(l+1)}\tilde{y}^l + b_i^{(l+1)}\)</span></p></li>
+<li><p><span class="math inline">\(z_i^{(l+1)} = w_i^{(l+1)}y^l + b_i^{(l+1)}\)</span></p></li>
+</ul>
+</section>
 </section>
 <section id="dropconnect" class="level2">
 <h2 class="anchored" data-anchor-id="dropconnect">Dropconnect</h2>
@@ -496,9 +526,18 @@ window.Quarto = {
 <li>Dropout의 일반화</li>
 <li>Dropout은 각 layer의 node 중 일부 node의 activation을 0으로 만들어서 모델을 경량화 시켰다면, Dropconnect는 가중치(weight)를 0으로 만들어 모델을 경량화 시킵니다.</li>
 </ul>
-<p><code>-</code> Motivation * input : <span class="math inline">\(v = [v_1, v_2, ... , v_n]^T\)</span> * output : <span class="math inline">\(r = [r_1, r_2, ... , r_d]^T\)</span> * weight : <span class="math inline">\(W\)</span>(of size <span class="math inline">\(d\)</span> X <span class="math inline">\(n\)</span>) * <span class="math inline">\(r = a(u) = a(Wv)\)</span></p>
-<section id="regularization" class="level3">
-<h3 class="anchored" data-anchor-id="regularization">Regularization</h3>
+<section id="motivation" class="level3">
+<h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
+<ul>
+<li>input : <span class="math inline">\(v = [v_1, v_2, ... , v_n]^T\)</span></li>
+<li>output : <span class="math inline">\(r = [r_1, r_2, ... , r_d]^T\)</span></li>
+<li>weight : <span class="math inline">\(W\)</span>(of size <span class="math inline">\(d\)</span> X <span class="math inline">\(n\)</span>)</li>
+<li><span class="math inline">\(r = a(u) = a(Wv)\)</span></li>
+</ul>
+</section>
+</section>
+<section id="regularization" class="level2">
+<h2 class="anchored" data-anchor-id="regularization">Regularization</h2>
 <section id="mse" class="level4">
 <h4 class="anchored" data-anchor-id="mse">MSE</h4>
 <p><span class="math inline">\(\begin{align}
@@ -511,7 +550,6 @@ window.Quarto = {
 <span class="math inline">\(\Rightarrow \hat{\beta}^{\text{LS}} : \text{unbiased estimator}\)</span><br>
 <span class="math inline">\(\Rightarrow\)</span> 아이디어 : Bias가 올라가더라도 Variance를 더 낮출 수 있지 않을까?</p>
 <p><span class="math display">\[\hat{y} = \beta_1x_1 + \beta_2x_2 + ... + \beta_{p}x_p\]</span> <span class="math display">\[\text{or}\]</span> <span class="math display">\[\hat{y} = \beta_1x + \beta_2x^2 + ... + \beta_{p}x^p\]</span></p>
-</section>
 </section>
 <section id="ridge" class="level3">
 <h3 class="anchored" data-anchor-id="ridge">Ridge</h3>
@@ -540,7 +578,15 @@ window.Quarto = {
     &amp; = (\sum_{i=1}^{n} x_{i1})^2\beta_1^2+(\sum_{i=1}^{n} x_{i2})^2\beta_2^2 + 2(\sum_{i=1}^{n} x_{i1}x_{i2})\beta_1\beta_2-2(\sum_{i=1}^{n}y_ix_{i1})\beta_1-2(\sum_{i=1}^{n}y_ix_{i2})\beta_2 + \sum_{i=1}^n y_i^2 \\
     &amp; = A\beta_1^2 + B\beta_1\beta_2 + C\beta_2^2 + D\beta_1 + E\beta_2 + F
 \end{align}\)</span></p>
-<p><code>-</code> 판별식 * <span class="math inline">\(B^2-4AC = 0\)</span> : 포물선 * <span class="math inline">\(B^2-4AC &gt; 0\)</span> : 쌍곡선 * <span class="math inline">\(B^2-4AC &lt; 0\)</span> : 타원 * <span class="math inline">\(B=0, C=0\)</span> : 원</p>
+</section>
+<section id="판별식" class="level3">
+<h3 class="anchored" data-anchor-id="판별식">판별식</h3>
+<ul>
+<li><span class="math inline">\(B^2-4AC = 0\)</span> : 포물선</li>
+<li><span class="math inline">\(B^2-4AC &gt; 0\)</span> : 쌍곡선</li>
+<li><span class="math inline">\(B^2-4AC &lt; 0\)</span> : 타원</li>
+<li><span class="math inline">\(B=0, C=0\)</span> : 원</li>
+</ul>
 <p><span class="math inline">\(\begin{align}
     B^2-4AC &amp; = \Big(2\sum_{i=1}^{n}x_{i1}x_{i2}\Big)^2 - 4\Big(\sum_{i=1}^{n} x_{i1}^2\Big)\Big(\sum_{i=1}^{n} x_{i2}^2\Big) \\
     &amp; = 4\left\{\Big(\sum_{i=1}^{n} x_{i1}x_{i2}\Big)^2-\Big(\sum_{i=1}^{n} x_{i1}^2\Big)\Big(\sum_{i=1}^{n} x_{i2}^2\Big)\right\} &lt; 0
