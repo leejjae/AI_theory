@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="이정재">
+<meta name="dcterms.date" content="2024-05-03">
 
-<title>AI_theory</title>
+<title>AI_theory - CNN</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,67 +68,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -139,7 +80,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AI_theory</span>
     </a>
   </div>
@@ -150,7 +91,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -171,21 +112,35 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cnnconvolutional-neural-network" id="toc-cnnconvolutional-neural-network" class="nav-link active" data-scroll-target="#cnnconvolutional-neural-network">CNN(Convolutional Neural Network)</a>
+  <ul class="collapse">
+  <li><a href="#cnns-structure" id="toc-cnns-structure" class="nav-link" data-scroll-target="#cnns-structure">CNN’s Structure</a></li>
+  <li><a href="#conv-filter" id="toc-conv-filter" class="nav-link" data-scroll-target="#conv-filter">Conv filter</a></li>
+  <li><a href="#padding" id="toc-padding" class="nav-link" data-scroll-target="#padding">Padding</a></li>
+  <li><a href="#pooling" id="toc-pooling" class="nav-link" data-scroll-target="#pooling">Pooling</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="CNN.out.ipynb" download="CNN.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AI_theory</h1>
+<h1 class="title">CNN</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -194,6 +149,12 @@ window.Quarto = {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 3, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -203,153 +164,43 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-<th>
-Author
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1714662000000" data-listing-file-modified-sort="1714711606636" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10" data-listing-title-sort="CNN" data-listing-filename-sort="CNN.ipynb">
-<td>
-<span class="listing-date">May 3, 2024</span>
-</td>
-<td>
-<a href="./posts/CNN.html" class="title listing-title">CNN</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1714721033654" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4" data-listing-title-sort="JBIG코드실습_타이타닉(4주차)" data-listing-filename-sort="JBIG코드실습_풍속예측(2주차).ipynb">
-<td>
-<span class="listing-date">Apr 5, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_풍속예측(2주차).html" class="title listing-title">JBIG코드실습_타이타닉(4주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1714721033650" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="506" data-listing-title-sort="ANN(3) - Overfitting" data-listing-filename-sort="ANN(3) - Overfitting.ipynb">
-<td>
-<span class="listing-date">Apr 5, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(3) - Overfitting.html" class="title listing-title">ANN(3) - Overfitting</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1711638000000" data-listing-file-modified-sort="1714721033646" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="431" data-listing-title-sort="ANN(2) - Vanishing Gradient &amp; Optimization" data-listing-filename-sort="ANN(2).ipynb">
-<td>
-<span class="listing-date">Mar 29, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(2).html" class="title listing-title">ANN(2) - Vanishing Gradient &amp; Optimization</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033650" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="JBIG코드실습_타이타닉(2주차)" data-listing-filename-sort="JBIG코드실습_타이타닉(2주차).ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_타이타닉(2주차).html" class="title listing-title">JBIG코드실습_타이타닉(2주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033654" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="390" data-listing-title-sort="랜덤포레스트(배깅,보팅)" data-listing-filename-sort="랜덤포레스트.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/랜덤포레스트.html" class="title listing-title">랜덤포레스트(배깅,보팅)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="6" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033654" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="181" data-listing-title-sort="로지스틱회귀" data-listing-filename-sort="로지스틱회귀.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/로지스틱회귀.html" class="title listing-title">로지스틱회귀</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033658" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="144" data-listing-title-sort="의사결정나무" data-listing-filename-sort="의사결정나무.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/의사결정나무.html" class="title listing-title">의사결정나무</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="8" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033654" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="JBIG코드실습_타이타닉(1주차)" data-listing-filename-sort="JBIG코드실습_타이타닉1.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_타이타닉1.html" class="title listing-title">JBIG코드실습_타이타닉(1주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="9" data-listing-date-sort="1711033200000" data-listing-file-modified-sort="1714721033646" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="652" data-listing-title-sort="ANN(1) - ANN의 구조" data-listing-filename-sort="ANN(1) - ANN's Structure.ipynb">
-<td>
-<span class="listing-date">Mar 22, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(1) - ANN's Structure.html" class="title listing-title">ANN(1) - ANN의 구조</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="10" data-listing-date-sort="1710514800000" data-listing-file-modified-sort="1714721033650" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="592" data-listing-title-sort="GBM" data-listing-filename-sort="GBM.ipynb">
-<td>
-<span class="listing-date">Mar 16, 2024</span>
-</td>
-<td>
-<a href="./posts/GBM.html" class="title listing-title">GBM</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<section id="cnnconvolutional-neural-network" class="level2">
+<h2 class="anchored" data-anchor-id="cnnconvolutional-neural-network">CNN(Convolutional Neural Network)</h2>
+<section id="cnns-structure" class="level3">
+<h3 class="anchored" data-anchor-id="cnns-structure">CNN’s Structure</h3>
+<p><img src="https://images.squarespace-cdn.com/content/v1/5acbdd3a25bf024c12f4c8b4/1593967518672-RPGLD1X41M4OXWENZ0BN/CNN+Structure.jpg?format=2500w" class="img-fluid"><br>
+https://www.ml-science.com/convolutional-neural-networks</p>
+</section>
+<section id="conv-filter" class="level3">
+<h3 class="anchored" data-anchor-id="conv-filter">Conv filter</h3>
+<div class="img-fluid quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CNN_files/figure-html/0ffdf80e-7b6e-4d4e-9fe8-4041e0e92653-1-464bd226-6b67-41f3-a7f4-5ef9aadf33d1.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
 </div>
-</div></main> <!-- /main -->
+<div class="img-fluid quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CNN_files/figure-html/98ca07da-a238-4cd3-ae07-f262b72f050f-1-9c211531-ce8e-4a26-bb25-1d56eb643f92.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
+</div>
+<p><img src="https://i.stack.imgur.com/2ezvr.gif" width="400" height="300"><br>
+https://stats.stackexchange.com/questions/296679/what-does-kernel-size-mean/296701</p>
+<p><img src="https://jeiwan.net/images/convolution-filter-example.png" class="img-fluid"><br>
+https://jeiwan.net/posts/til-convolution-filters-are-weights/</p>
+</section>
+<section id="padding" class="level3">
+<h3 class="anchored" data-anchor-id="padding">Padding</h3>
+</section>
+<section id="pooling" class="level3">
+<h3 class="anchored" data-anchor-id="pooling">Pooling</h3>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
