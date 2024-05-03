@@ -9,7 +9,7 @@
 <meta name="author" content="이정재">
 <meta name="dcterms.date" content="2024-05-03">
 
-<title>AI_theory - CNN</title>
+<title>AI_theory - CNN(Convolutional Neural Network)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -120,12 +149,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#cnnconvolutional-neural-network" id="toc-cnnconvolutional-neural-network" class="nav-link active" data-scroll-target="#cnnconvolutional-neural-network">CNN(Convolutional Neural Network)</a>
+  <li><a href="#cnns-structure" id="toc-cnns-structure" class="nav-link active" data-scroll-target="#cnns-structure">CNN’s Structure</a></li>
+  <li><a href="#feature-extractor" id="toc-feature-extractor" class="nav-link" data-scroll-target="#feature-extractor">Feature Extractor</a>
   <ul class="collapse">
-  <li><a href="#cnns-structure" id="toc-cnns-structure" class="nav-link" data-scroll-target="#cnns-structure">CNN’s Structure</a></li>
-  <li><a href="#conv-filter" id="toc-conv-filter" class="nav-link" data-scroll-target="#conv-filter">Conv filter</a></li>
-  <li><a href="#padding" id="toc-padding" class="nav-link" data-scroll-target="#padding">Padding</a></li>
-  <li><a href="#pooling" id="toc-pooling" class="nav-link" data-scroll-target="#pooling">Pooling</a></li>
+  <li><a href="#convolution" id="toc-convolution" class="nav-link" data-scroll-target="#convolution">1. Convolution</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="CNN.out.ipynb" download="CNN.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
@@ -135,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CNN</h1>
+<h1 class="title">CNN(Convolutional Neural Network)</h1>
 </div>
 
 
@@ -164,39 +191,91 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="cnnconvolutional-neural-network" class="level2">
-<h2 class="anchored" data-anchor-id="cnnconvolutional-neural-network">CNN(Convolutional Neural Network)</h2>
-<section id="cnns-structure" class="level3">
-<h3 class="anchored" data-anchor-id="cnns-structure">CNN’s Structure</h3>
+<section id="cnns-structure" class="level2">
+<h2 class="anchored" data-anchor-id="cnns-structure">CNN’s Structure</h2>
 <p><img src="https://images.squarespace-cdn.com/content/v1/5acbdd3a25bf024c12f4c8b4/1593967518672-RPGLD1X41M4OXWENZ0BN/CNN+Structure.jpg?format=2500w" class="img-fluid"><br>
-https://www.ml-science.com/convolutional-neural-networks</p>
+(사진 0) https://www.ml-science.com/convolutional-neural-networks<br>
+* 앞 부분이 <code>Feature Extractor</code>, 뒷 부분이 <code>FC layer</code>이다. * <code>Feature Extractor</code>에서는 말 그대로 사진의 특징을 추출하는 부분이다. * <code>FC layer</code>에서는 추출된 특징을 가지고 학습하는 부분이다.</p>
 </section>
-<section id="conv-filter" class="level3">
-<h3 class="anchored" data-anchor-id="conv-filter">Conv filter</h3>
-<div class="img-fluid quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="CNN_files/figure-html/0ffdf80e-7b6e-4d4e-9fe8-4041e0e92653-1-464bd226-6b67-41f3-a7f4-5ef9aadf33d1.png" class="img-fluid figure-img"></p>
-<figcaption>image.png</figcaption>
-</figure>
-</div>
-<div class="img-fluid quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="CNN_files/figure-html/98ca07da-a238-4cd3-ae07-f262b72f050f-1-9c211531-ce8e-4a26-bb25-1d56eb643f92.png" class="img-fluid figure-img"></p>
-<figcaption>image.png</figcaption>
-</figure>
-</div>
+<section id="feature-extractor" class="level2">
+<h2 class="anchored" data-anchor-id="feature-extractor">Feature Extractor</h2>
+<p><img src="https://d2l.ai/_images/lenet.svg" width="800" height="500"><br>
+(사진 1) https://d2l.ai/chapter_convolutional-neural-networks/lenet.html</p>
+<ul>
+<li>다음은 LeNet Architecture의 구조이다.</li>
+<li>28 x 28 imgae의 사진에서 feature를 추출하는 모습을 대략적을 보여주고 있다.</li>
+<li>Feature Extractor는 CNN에서 메인이 되는 부분이다.</li>
+</ul>
+<section id="convolution" class="level3">
+<h3 class="anchored" data-anchor-id="convolution">1. Convolution</h3>
+<ul>
+<li>(사진 1)의 28x28 image에 보이는 <code>파란색 사각형</code>이 이미지를 훑으면서 Feature를 추출하고 있다.</li>
+<li><code>파란색 사각형</code>은 <strong>Convolutional filter(Conv filter)</strong>, <strong>kernel</strong> 등으로 불린다.</li>
+<li>kernel의 사이즈는 3x3, 5x5, 7x7, 등 다양하며, 경우에 따라 사용되는 사이즈가 다르다.</li>
+</ul>
+<section id="striding" class="level4">
+<h4 class="anchored" data-anchor-id="striding"><code>-</code> <strong>Striding</strong></h4>
+<ul>
+<li>kernel이 image를 훑는 과정에서 몇칸씩 이동할 것인지 정하는 개념이다.</li>
+<li>예를 들어 striding=1이라면, kernel은 한칸씩, striding=2라면, kernel은 두칸씩 이동한다.</li>
+<li>다음은 Striding=1인 kernel이 image를 훑는 과정을 시각화 한 것이다.</li>
+</ul>
+<p><img src="https://i.stack.imgur.com/9OZKF.gif" width="500" height="350"><br>
+(사진2) https://stats.stackexchange.com/questions/296679/what-does-kernel-size-mean/296701</p>
+<ul>
+<li>사진(2)에서는 3x3 kernel이 쓰였다.</li>
+<li>kernel이 이동할 때 마다, kernel에 적혀진 숫자와 image의 pixel을 곱하고 더한 뒤에(합성곱을 해준 뒤에), 한 pixel에 나타낸다.(9개의 pixel <span class="math inline">\(\rightarrow\)</span> 1개의 pixel로 변환)</li>
+</ul>
+<p><img src="https://jeiwan.net/images/convolution-filter-example.png" class="img-fluid"><br>
+(사진 2.5) https://jeiwan.net/posts/til-convolution-filters-are-weights/ * Conv filter 의 간단한 예시와 결과이다.</p>
+</section>
+<section id="padding" class="level4">
+<h4 class="anchored" data-anchor-id="padding"><code>-</code> <strong>Padding</strong></h4>
+<ul>
+<li>9개의 pixel이 1개의 pixel로 축소됨에 따라 원래 이미지의 사이즈는 줄어들 수 밖에 없다.</li>
+<li>사이즈 축소를 막기 위해 사용된 것이 <code>padding</code>으로 (사진 2)에서 보이는 것 처럼, 화소 0값으로 pixel들을 둘러 쌓고 있는 것을 말한다.</li>
+</ul>
+<p><img src="https://d2l.ai/_images/lenet.svg" width="800" height="500"><br>
+(사진 1) https://d2l.ai/chapter_convolutional-neural-networks/lenet.html</p>
+<ul>
+<li>(사진 1)을 다시 살펴보자. C1 feature map에는 6개의 feature맵이 생성되었다.</li>
+<li>6개의 kernel이 사용되었다는 말과 동치이다.</li>
+<li>C1 feature map <span class="math inline">\(\rightarrow\)</span> S2 featuremap 과정을 살펴보면, feature map 크기가 줄었다.</li>
+<li>이는 feature map의 size는 <code>padding</code>으로 인해 유지하였지만, 0이 아닌 pixel의 수는 줄어들었기 때문이다.</li>
+<li><code>Pooling</code> 때문이다.</li>
+</ul>
+</section>
+<section id="pooling" class="level4">
+<h4 class="anchored" data-anchor-id="pooling"><code>-</code> <strong>Pooling</strong></h4>
+<p><img src="https://production-media.paperswithcode.com/methods/MaxpoolSample2.png" width="500" height="350"><br>
+(사진 3) https://paperswithcode.com/method/max-pooling</p>
+<ul>
+<li>(사진 3)은 2x2 Max Pooling을 시각화 한 것이다.(Max 이외에도 Average, Min Pooling등이 가능하다.)</li>
+<li>image를 2x2로 쪼갠 뒤에, 그 중에서 가장 큰 값만 추출하는 것이다.</li>
+<li>Max Pooling을 사용하는 이유는, 주변 pixel 중에서 최대값만 추출하여(특징이 가장 잘 나타나는 pixel만 추출하여), 좀 더 세부적인 특징을 추출하기 위함이다.</li>
+<li>Max Pooling을 하게 되면 0이 아닌 pixel의 수가 줄면서(=특징이 가장 잘 나타나는 pixel만 남으면서) 좀 더 자세한 특징들을 추출할 수 있다.</li>
+<li>즉, 적어진 pixel들을 같은 size의 kernel이 지나가면서 더 자세한 특징들을 추출할 수 있게 된다.</li>
+</ul>
+</section>
+<section id="generalization" class="level4">
+<h4 class="anchored" data-anchor-id="generalization"><code>-</code> <strong>Generalization</strong></h4>
+<p><img src="CNN_files/figure-html/823cb08a-a332-4aec-a1f2-d1d3ce1a539a-1-94c887fd-5911-4d59-90a4-b61553a33238.png" class="img-fluid" alt="image.png"><br>
+(사진 4)</p>
+<p><img src="CNN_files/figure-html/8613d40a-34cd-4cbe-b9e2-9ebf0581cc6e-1-65e313a3-ce53-466d-b4e8-0be9269788b0.png" class="img-fluid" alt="image.png"><br>
+(사진 5)</p>
+<p>(사진 4) * 앞서 설명했던 내용을 그림으로 나타내면 다음과 같다. * 컬러 이미지 <span class="math inline">\(X\)</span>는 첫번째 kernel을 통과하는데, 이때 kernel의 개수는 <span class="math inline">\(l_1\)</span>개이고, kernel의 사이즈는 <span class="math inline">\(f^{[1]}\)</span> x <span class="math inline">\(f^{[1]}\)</span>이다. * <span class="math inline">\(k_{i}^{[1]}\)</span> 커널을 지나간 이미지는 <span class="math inline">\(A_i^{[1]}\)</span>로 표현된다. (<span class="math inline">\(A_i^{[1]} \in R^{n^{[1]} \,\text{x} \,n^{[1]}}\)</span>)</p>
+<p>(사진 5) * (사진 4)과정을 계속 이어나가는 것을 시각화한 것이다. * kernel을 지나가는 과정에서 padding과 striding=1이 적용되었다.</p>
+</section>
+<section id="visualization" class="level4">
+<h4 class="anchored" data-anchor-id="visualization"><code>-</code> <strong>Visualization</strong></h4>
+<ul>
+<li>(사진 4)와 (사진 5)를 시각화한 것이다.</li>
+</ul>
 <p><img src="https://i.stack.imgur.com/2ezvr.gif" width="400" height="300"><br>
 https://stats.stackexchange.com/questions/296679/what-does-kernel-size-mean/296701</p>
-<p><img src="https://jeiwan.net/images/convolution-filter-example.png" class="img-fluid"><br>
-https://jeiwan.net/posts/til-convolution-filters-are-weights/</p>
-</section>
-<section id="padding" class="level3">
-<h3 class="anchored" data-anchor-id="padding">Padding</h3>
-</section>
-<section id="pooling" class="level3">
-<h3 class="anchored" data-anchor-id="pooling">Pooling</h3>
 
 
+</section>
 </section>
 </section>
 
