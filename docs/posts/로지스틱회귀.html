@@ -152,7 +152,7 @@ window.Quarto = {
   <li><a href="#로지스틱-회귀logistic-regression" id="toc-로지스틱-회귀logistic-regression" class="nav-link active" data-scroll-target="#로지스틱-회귀logistic-regression">로지스틱 회귀(Logistic Regression)</a>
   <ul class="collapse">
   <li><a href="#베르누이-분포" id="toc-베르누이-분포" class="nav-link" data-scroll-target="#베르누이-분포">베르누이 분포</a></li>
-  <li><a href="#logistic-function" id="toc-logistic-function" class="nav-link" data-scroll-target="#logistic-function">Logistic Function</a></li>
+  <li><a href="#승산비oddsratio" id="toc-승산비oddsratio" class="nav-link" data-scroll-target="#승산비oddsratio">승산비(<span class="math inline">\(odds\,ratio\)</span>)</a></li>
   <li><a href="#logistic-regression로지스틱-회귀" id="toc-logistic-regression로지스틱-회귀" class="nav-link" data-scroll-target="#logistic-regression로지스틱-회귀">Logistic Regression(로지스틱 회귀)</a></li>
   <li><a href="#다항-로지스틱-회귀-소프트맥스" id="toc-다항-로지스틱-회귀-소프트맥스" class="nav-link" data-scroll-target="#다항-로지스틱-회귀-소프트맥스">다항 로지스틱 회귀 &amp; 소프트맥스</a></li>
   <li><a href="#로지스틱-회귀-모델-학습" id="toc-로지스틱-회귀-모델-학습" class="nav-link" data-scroll-target="#로지스틱-회귀-모델-학습">로지스틱 회귀 모델 학습</a></li>
@@ -198,11 +198,20 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="로지스틱-회귀logistic-regression">로지스틱 회귀(Logistic Regression)</h2>
 <section id="베르누이-분포" class="level3">
 <h3 class="anchored" data-anchor-id="베르누이-분포">베르누이 분포</h3>
-<p><code>-</code> 베르누이 확률밀도함수(PDF)는 다음과 같습니다. * <span class="math inline">\(f(x|p) = p^x(1-p)^{1-x} (x=1,0)\)</span> * 즉 <span class="math inline">\(x=1\)</span>일 확률이 <span class="math inline">\(p\)</span>, <span class="math inline">\(x=0\)</span>일 확률이 <span class="math inline">\(1-p\)</span>입니다.</p>
+<ul>
+<li><span class="math inline">\(f(x|p) = p^x(1-p)^{1-x} (x=1,0)\)</span></li>
+<li>즉 <span class="math inline">\(x=1\)</span>일 확률이 <span class="math inline">\(p\)</span>, <span class="math inline">\(x=0\)</span>일 확률이 <span class="math inline">\(1-p\)</span>입니다.</li>
+</ul>
 </section>
-<section id="logistic-function" class="level3">
-<h3 class="anchored" data-anchor-id="logistic-function">Logistic Function</h3>
-<p><code>-</code> 승산비(<span class="math inline">\(odds\,ratio\)</span>) * 베르누이 분포에서 1이 나올 확률 <span class="math inline">\(p\)</span>와 0이 나올 확률 <span class="math inline">\(1-p\)</span>의 비율입니다. * <span class="math inline">\(odds\, ratio = \displaystyle\frac{p}{1-p}    \left(0\leq odds\,ratio\leq \infty \right) = \displaystyle\frac{\text{1일확률}}{\text{0일확률}}\)</span> * 확률 <span class="math inline">\(p\)</span>를 <span class="math inline">\(odds\,ratio\)</span>로 변환하면 0부터 무한대까지의 값을 가질 수 있다. * 승산비(<span class="math inline">\(odds\,ratio\)</span>)를 로그변환하면 다음과 같다. * <span class="math inline">\(z = logit\left(\displaystyle\frac{p}{1-p} \right) = log\left(\displaystyle\frac{p}{1-p}\right)\)</span></p>
+<section id="승산비oddsratio" class="level3">
+<h3 class="anchored" data-anchor-id="승산비oddsratio">승산비(<span class="math inline">\(odds\,ratio\)</span>)</h3>
+<ul>
+<li>베르누이 분포에서 1이 나올 확률 <span class="math inline">\(p\)</span>와 0이 나올 확률 <span class="math inline">\(1-p\)</span>의 비율입니다.</li>
+<li><span class="math inline">\(odds\, ratio = \displaystyle\frac{p}{1-p}    \left(0\leq odds\,ratio\leq \infty \right) = \displaystyle\frac{\text{1일확률}}{\text{0일확률}}\)</span></li>
+<li>확률 <span class="math inline">\(p\)</span>를 <span class="math inline">\(odds\,ratio\)</span>로 변환하면 0부터 무한대까지의 값을 가질 수 있다.</li>
+<li>승산비(<span class="math inline">\(odds\,ratio\)</span>)를 로그변환하면 다음과 같다.</li>
+<li><span class="math inline">\(z = logit\left(\displaystyle\frac{p}{1-p} \right) = log\left(\displaystyle\frac{p}{1-p}\right)\)</span></li>
+</ul>
 <p><code>-</code> 식을 다음과 같이 변환해보자<br>
 <span class="math inline">\(log\left(\displaystyle\frac{p}{1-p}\right) = z\)</span><br>
 <br>
@@ -214,9 +223,11 @@ window.Quarto = {
 <br>
 <span class="math inline">\(\Leftrightarrow p(1+e^z) = e^z\)</span><br>
 <br>
-<span class="math inline">\(\Leftrightarrow p = \displaystyle\frac{e^z}{1+e^z} = \displaystyle\frac{1}{1+e^{-z}}\)</span><br>
-<br>
-* 이처럼 <span class="math inline">\(logit\,function\)</span>의 역함수가 <span class="math inline">\(logistic\, function\)</span>이다. 따라서 * <span class="math inline">\(logistic(z) = \mu(z) = \displaystyle\frac{1}{1+e^{-z}}\)</span></p>
+<span class="math inline">\(\Leftrightarrow p = \displaystyle\frac{e^z}{1+e^z} = \displaystyle\frac{1}{1+e^{-z}}\)</span></p>
+<ul>
+<li>이처럼 <span class="math inline">\(logit\,function\)</span>의 역함수가 <span class="math inline">\(logistic\, function\)</span>이다. 따라서</li>
+<li><span class="math inline">\(logistic(z) = \mu(z) = \displaystyle\frac{1}{1+e^{-z}}\)</span></li>
+</ul>
 <p><code>-</code> <span class="math inline">\(logistic\,function\)</span>의 그래프는 다음과 같다.<a href="https://en.wikipedia.org/wiki/Sigmoid_function">(출처)</a></p>
 <div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -228,14 +239,9 @@ window.Quarto = {
 <section id="logistic-regression로지스틱-회귀" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression로지스틱-회귀">Logistic Regression(로지스틱 회귀)</h3>
 <p><code>-</code> 그러다면 <span class="math inline">\(logistic function\)</span>을 왜 사용하는 것일까?</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="http://i.imgur.com/Co19p9c.png" class="img-fluid figure-img"></p>
-<figcaption>사진</figcaption>
-</figure>
-</div>
+<p><img src="http://i.imgur.com/Co19p9c.png" class="img-fluid" alt="사진"> <a href="http://i.imgur.com/Co19p9c.png">사진출처 : ratsgo’s blog</a></p>
 <ul>
-<li>나이에 따른 질병 유무에 대한 분류문제를 해결해야한다고 가정해보자.<a href="http://i.imgur.com/Co19p9c.png">사진출처 : ratsgo’s blog</a></li>
+<li>나이에 따른 질병 유무에 대한 분류문제를 해결해야한다고 가정해보자.</li>
 <li>그림과 같이 분류 문제를 선형 회귀로 해결하려고 하면 그림이 많이 이상해집니다.</li>
 <li>따라서 앞서 언급한 <span class="math inline">\(logistic\,function\)</span>을 이용하여 문제를 해결합니다. <span class="math inline">\(logistic\,function(z) = \displaystyle\frac{1}{1+e^{-z}} = \begin{cases}1&amp;z&gt;\frac12\\\frac12&amp;z=\frac12\\0&amp;z&lt;\frac12\end{cases}\)</span></li>
 </ul>
