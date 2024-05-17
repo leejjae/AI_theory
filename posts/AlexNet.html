@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="이정재">
+<meta name="dcterms.date" content="2024-05-17">
 
-<title>AI_theory</title>
+<title>AI_theory - AlexNet</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -129,7 +99,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -139,7 +109,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AI_theory</span>
     </a>
   </div>
@@ -150,7 +120,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -171,21 +141,37 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#alexnet-architecture" id="toc-alexnet-architecture" class="nav-link active" data-scroll-target="#alexnet-architecture">AlexNet Architecture</a>
+  <ul class="collapse">
+  <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure">Structure</a></li>
+  <li><a href="#lrnlocal-response-nomalization" id="toc-lrnlocal-response-nomalization" class="nav-link" data-scroll-target="#lrnlocal-response-nomalization">LRN(Local Response Nomalization)</a></li>
+  <li><a href="#overlapping-pooling" id="toc-overlapping-pooling" class="nav-link" data-scroll-target="#overlapping-pooling">Overlapping Pooling</a></li>
+  <li><a href="#relu" id="toc-relu" class="nav-link" data-scroll-target="#relu">ReLU</a></li>
+  <li><a href="#data-augmentation" id="toc-data-augmentation" class="nav-link" data-scroll-target="#data-augmentation">Data Augmentation</a></li>
+  <li><a href="#dropout" id="toc-dropout" class="nav-link" data-scroll-target="#dropout">Dropout</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="AlexNet.out.ipynb" download="AlexNet.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AI_theory</h1>
+<h1 class="title">AlexNet</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -194,6 +180,12 @@ window.Quarto = {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 17, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -203,175 +195,104 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-<th>
-Author
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1715871600000" data-listing-file-modified-sort="1715946926198" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386" data-listing-title-sort="AlexNet" data-listing-filename-sort="AlexNet.ipynb">
-<td>
-<span class="listing-date">May 17, 2024</span>
-</td>
-<td>
-<a href="./posts/AlexNet.html" class="title listing-title">AlexNet</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1715871600000" data-listing-file-modified-sort="1715949717408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="55" data-listing-title-sort="RNN" data-listing-filename-sort="RNN.ipynb">
-<td>
-<span class="listing-date">May 17, 2024</span>
-</td>
-<td>
-<a href="./posts/RNN.html" class="title listing-title">RNN</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1714662000000" data-listing-file-modified-sort="1715947080495" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="406" data-listing-title-sort="CNN(Convolutional Neural Network)" data-listing-filename-sort="CNN.ipynb">
-<td>
-<span class="listing-date">May 3, 2024</span>
-</td>
-<td>
-<a href="./posts/CNN.html" class="title listing-title">CNN(Convolutional Neural Network)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1714721033654" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4" data-listing-title-sort="JBIG코드실습_타이타닉(4주차)" data-listing-filename-sort="JBIG코드실습_풍속예측(2주차).ipynb">
-<td>
-<span class="listing-date">Apr 5, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_풍속예측(2주차).html" class="title listing-title">JBIG코드실습_타이타닉(4주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1715950142278" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="506" data-listing-title-sort="ANN(3) - Overfitting" data-listing-filename-sort="ANN(3) - Overfitting.ipynb">
-<td>
-<span class="listing-date">Apr 5, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(3) - Overfitting.html" class="title listing-title">ANN(3) - Overfitting</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1711638000000" data-listing-file-modified-sort="1715950017293" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="431" data-listing-title-sort="ANN(2) - Vanishing Gradient &amp; Optimization" data-listing-filename-sort="ANN(2).ipynb">
-<td>
-<span class="listing-date">Mar 29, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(2).html" class="title listing-title">ANN(2) - Vanishing Gradient &amp; Optimization</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="6" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033650" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="JBIG코드실습_타이타닉(2주차)" data-listing-filename-sort="JBIG코드실습_타이타닉(2주차).ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_타이타닉(2주차).html" class="title listing-title">JBIG코드실습_타이타닉(2주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1715950260630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="390" data-listing-title-sort="랜덤포레스트(배깅,보팅)" data-listing-filename-sort="랜덤포레스트.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/랜덤포레스트.html" class="title listing-title">랜덤포레스트(배깅,보팅)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="8" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1715951916056" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="281" data-listing-title-sort="로지스틱회귀" data-listing-filename-sort="로지스틱회귀.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/로지스틱회귀.html" class="title listing-title">로지스틱회귀</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="9" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033658" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="144" data-listing-title-sort="의사결정나무" data-listing-filename-sort="의사결정나무.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/의사결정나무.html" class="title listing-title">의사결정나무</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="10" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033654" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="JBIG코드실습_타이타닉(1주차)" data-listing-filename-sort="JBIG코드실습_타이타닉1.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_타이타닉1.html" class="title listing-title">JBIG코드실습_타이타닉(1주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="11" data-listing-date-sort="1711033200000" data-listing-file-modified-sort="1715950276830" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="652" data-listing-title-sort="ANN(1) - ANN의 구조" data-listing-filename-sort="ANN(1) - ANN's Structure.ipynb">
-<td>
-<span class="listing-date">Mar 22, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(1) - ANN's Structure.html" class="title listing-title">ANN(1) - ANN의 구조</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="12" data-listing-date-sort="1710514800000" data-listing-file-modified-sort="1714721033650" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="592" data-listing-title-sort="GBM" data-listing-filename-sort="GBM.ipynb">
-<td>
-<span class="listing-date">Mar 16, 2024</span>
-</td>
-<td>
-<a href="./posts/GBM.html" class="title listing-title">GBM</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<section id="alexnet-architecture" class="level2">
+<h2 class="anchored" data-anchor-id="alexnet-architecture">AlexNet Architecture</h2>
+<div class="img-fluid quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*0dsWFuc0pDmcAmHJUh7wqg.png" class="img-fluid figure-img"></p>
+<figcaption>.</figcaption>
+</figure>
 </div>
-</div></main> <!-- /main -->
+<section id="structure" class="level3">
+<h3 class="anchored" data-anchor-id="structure">Structure</h3>
+<ol type="1">
+<li><strong>Input Image</strong> : 227x227x3<br>
+<code>--Convolutional Layer--</code></li>
+<li><strong>Conv1</strong> : 96 kernels of size 11x11, stride=4, padding=0<br>
+input : 224x224x3<br>
+output : 55x55x96</li>
+<li><strong>MaxPool1</strong> : 3x3 kernels, stride=2<br>
+input : 55x55x96<br>
+output : 27x27x96</li>
+<li><strong>Norm1(LRN)</strong><br>
+input : 27x27x96<br>
+output : 27x27x96</li>
+<li><strong>Conv2</strong> : 256 kernels of size 5x5, stride=1, padding=2<br>
+input : 27x27x96<br>
+output : 27x27x256</li>
+<li><strong>MaxPool2</strong> : 3x3 kernels, stride=2, padding=2<br>
+input: 27x27x256<br>
+output : 13x13x256</li>
+<li><strong>Norm2(LRN)</strong><br>
+input : 13x13x256<br>
+output : 13x13x256</li>
+<li><strong>Conv3</strong> : 384 kernels of size 3x3, stride=1, padding=1<br>
+input : 13x13x256<br>
+output : 13x13x384</li>
+<li><strong>Conv4</strong> : 384 kernels of size 3x3, stride=1, padding=1<br>
+input : 13x13x384<br>
+output : 13x13x256</li>
+<li><strong>Conv5</strong> : 256 kernels of size 3x3, stride=1, padding=1<br>
+input : 13x13x384<br>
+output : 13x13x256</li>
+<li><strong>MaxPool3</strong> : 3x3 kernels, stride=2<br>
+input : 13x13x256<br>
+output : 6x6x256<br>
+<code>--Convolutional Layer--</code><br>
+<br>
+<code>--Fully Connected Layer--</code></li>
+<li><strong>FC1</strong> : fully connected layer with 4096 neurons<br>
+input : 6x6x256(=9216)<br>
+output : 4096</li>
+<li><strong>FC2</strong> : fully connected layer with 4096 neurons<br>
+input : 4096<br>
+output : 4096<br>
+<code>--Fully Connected Layer--</code><br>
+<br>
+<code>--Output Layer--</code></li>
+<li><strong>output layer</strong> : fully connected layer with 1000-way softmax<br>
+input : 4096<br>
+output : 100<br>
+<code>--Output Layer--</code></li>
+</ol>
+</section>
+<section id="lrnlocal-response-nomalization" class="level3">
+<h3 class="anchored" data-anchor-id="lrnlocal-response-nomalization">LRN(Local Response Nomalization)</h3>
+<p><span class="math inline">\(\displaystyle b_{x,y}^i = \displaystyle\frac{a_{x,y}^i}{\Big(k + \alpha \displaystyle\sum_{j=max(0,i-n/2)}^{min(N-1,i+n/2)}(a_{x,y}^i)^2\Big)^{\beta}}\)</span></p>
+<ul>
+<li><span class="math inline">\(b_{x,y}^i\)</span> : LRN한 Activation 결과</li>
+<li><span class="math inline">\(a_{x,y}^i\)</span> : Activation 결과</li>
+<li><span class="math inline">\(i\)</span> : <span class="math inline">\(i\)</span>번째 Filter</li>
+<li><span class="math inline">\(n\)</span> : 고려해야하는 Filter 개수</li>
+<li><span class="math inline">\(N\)</span> : 총 Filter 개수</li>
+<li><span class="math inline">\(k, \alpha, \beta\)</span> : Hyperparameters</li>
+</ul>
+<p><img src="https://cdn.datamaker.io/datamaker-erp/media/uploads/2020/09/16/1_vfc3ku-wqpg1znxfyc_xpq.png" width="600"></p>
+<p><code>-</code> AlexNet에서 사용된 Activation function ReLU는 Input 값이 양수인 경우, 값이 그대로 나오기 때문에, 정규화를 해주기 위해 LRN을 사용했다. ReLU 함수를 통과한 output <span class="math inline">\(a\)</span>는 위의 식처럼 Normalization 된다. 현재는 Batch Normalization을 사용하기 때문에, LRN은 사용되지 않는다.</p>
+</section>
+<section id="overlapping-pooling" class="level3">
+<h3 class="anchored" data-anchor-id="overlapping-pooling">Overlapping Pooling</h3>
+<p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FLIt1h%2FbtrRh7AbRGD%2FhqIvSgAUABvqtdKVWXdu41%2Fimg.png" alt="Image" width="400"></p>
+<ul>
+<li>AlexNet 이전 모델인 LeNet은 Non-overlapping pooling 사용했다.</li>
+<li>AlexNet은 Overlapping pooling을 도입했다.<br>
+<span class="math inline">\(\Rightarrow\)</span> Overlapping pooling을 사용하면, 정확도가 향상되지만, 계산량이 증가한다.</li>
+</ul>
+</section>
+<section id="relu" class="level3">
+<h3 class="anchored" data-anchor-id="relu"><a href="https://leejjae.github.io/AI_theory/posts/ANN(2).html">ReLU</a></h3>
+</section>
+<section id="data-augmentation" class="level3">
+<h3 class="anchored" data-anchor-id="data-augmentation"><a href="https://leejjae.github.io/AI_theory/posts/ANN(3)%20-%20Overfitting.html">Data Augmentation</a></h3>
+</section>
+<section id="dropout" class="level3">
+<h3 class="anchored" data-anchor-id="dropout"><a href="https://leejjae.github.io/AI_theory/posts/ANN(3)%20-%20Overfitting.html#dropout">Dropout</a></h3>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

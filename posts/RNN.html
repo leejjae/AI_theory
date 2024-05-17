@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="이정재">
+<meta name="dcterms.date" content="2024-05-17">
 
-<title>AI_theory</title>
+<title>AI_theory - RNN</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,24 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -129,7 +99,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -139,7 +109,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AI_theory</span>
     </a>
   </div>
@@ -150,7 +120,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -171,21 +141,32 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#rnnrecurrent-neural-netwrok" id="toc-rnnrecurrent-neural-netwrok" class="nav-link active" data-scroll-target="#rnnrecurrent-neural-netwrok">RNN(Recurrent Neural Netwrok)</a>
+  <ul class="collapse">
+  <li><a href="#rnn-구조" id="toc-rnn-구조" class="nav-link" data-scroll-target="#rnn-구조">RNN 구조</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="RNN.out.ipynb" download="RNN.out.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AI_theory</h1>
+<h1 class="title">RNN</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -194,6 +175,12 @@ window.Quarto = {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 17, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -203,175 +190,36 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-Date
-</th>
-<th>
-Title
-</th>
-<th>
-Author
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1715871600000" data-listing-file-modified-sort="1715946926198" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386" data-listing-title-sort="AlexNet" data-listing-filename-sort="AlexNet.ipynb">
-<td>
-<span class="listing-date">May 17, 2024</span>
-</td>
-<td>
-<a href="./posts/AlexNet.html" class="title listing-title">AlexNet</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1715871600000" data-listing-file-modified-sort="1715949717408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="55" data-listing-title-sort="RNN" data-listing-filename-sort="RNN.ipynb">
-<td>
-<span class="listing-date">May 17, 2024</span>
-</td>
-<td>
-<a href="./posts/RNN.html" class="title listing-title">RNN</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1714662000000" data-listing-file-modified-sort="1715947080495" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="406" data-listing-title-sort="CNN(Convolutional Neural Network)" data-listing-filename-sort="CNN.ipynb">
-<td>
-<span class="listing-date">May 3, 2024</span>
-</td>
-<td>
-<a href="./posts/CNN.html" class="title listing-title">CNN(Convolutional Neural Network)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1714721033654" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="4" data-listing-title-sort="JBIG코드실습_타이타닉(4주차)" data-listing-filename-sort="JBIG코드실습_풍속예측(2주차).ipynb">
-<td>
-<span class="listing-date">Apr 5, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_풍속예측(2주차).html" class="title listing-title">JBIG코드실습_타이타닉(4주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1712242800000" data-listing-file-modified-sort="1715950142278" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="506" data-listing-title-sort="ANN(3) - Overfitting" data-listing-filename-sort="ANN(3) - Overfitting.ipynb">
-<td>
-<span class="listing-date">Apr 5, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(3) - Overfitting.html" class="title listing-title">ANN(3) - Overfitting</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1711638000000" data-listing-file-modified-sort="1715950017293" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="431" data-listing-title-sort="ANN(2) - Vanishing Gradient &amp; Optimization" data-listing-filename-sort="ANN(2).ipynb">
-<td>
-<span class="listing-date">Mar 29, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(2).html" class="title listing-title">ANN(2) - Vanishing Gradient &amp; Optimization</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="6" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033650" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="JBIG코드실습_타이타닉(2주차)" data-listing-filename-sort="JBIG코드실습_타이타닉(2주차).ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_타이타닉(2주차).html" class="title listing-title">JBIG코드실습_타이타닉(2주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="7" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1715950260630" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="390" data-listing-title-sort="랜덤포레스트(배깅,보팅)" data-listing-filename-sort="랜덤포레스트.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/랜덤포레스트.html" class="title listing-title">랜덤포레스트(배깅,보팅)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="8" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1715951916056" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="281" data-listing-title-sort="로지스틱회귀" data-listing-filename-sort="로지스틱회귀.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/로지스틱회귀.html" class="title listing-title">로지스틱회귀</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="9" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033658" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="144" data-listing-title-sort="의사결정나무" data-listing-filename-sort="의사결정나무.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/의사결정나무.html" class="title listing-title">의사결정나무</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="10" data-listing-date-sort="1711206000000" data-listing-file-modified-sort="1714721033654" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="JBIG코드실습_타이타닉(1주차)" data-listing-filename-sort="JBIG코드실습_타이타닉1.ipynb">
-<td>
-<span class="listing-date">Mar 24, 2024</span>
-</td>
-<td>
-<a href="./posts/JBIG코드실습_타이타닉1.html" class="title listing-title">JBIG코드실습_타이타닉(1주차)</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="11" data-listing-date-sort="1711033200000" data-listing-file-modified-sort="1715950276830" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="652" data-listing-title-sort="ANN(1) - ANN의 구조" data-listing-filename-sort="ANN(1) - ANN's Structure.ipynb">
-<td>
-<span class="listing-date">Mar 22, 2024</span>
-</td>
-<td>
-<a href="./posts/ANN(1) - ANN's Structure.html" class="title listing-title">ANN(1) - ANN의 구조</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-<tr data-index="12" data-listing-date-sort="1710514800000" data-listing-file-modified-sort="1714721033650" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="592" data-listing-title-sort="GBM" data-listing-filename-sort="GBM.ipynb">
-<td>
-<span class="listing-date">Mar 16, 2024</span>
-</td>
-<td>
-<a href="./posts/GBM.html" class="title listing-title">GBM</a>
-</td>
-<td>
-<span class="listing-author">이정재 </span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+<section id="rnnrecurrent-neural-netwrok" class="level2">
+<h2 class="anchored" data-anchor-id="rnnrecurrent-neural-netwrok">RNN(Recurrent Neural Netwrok)</h2>
+<p><code>-</code> RNN은 시퀀스 데이터(연속적인 데이터)를 처리하도록 만들어진 Neural Network이다. 텍스트, 시계열자료(날씨, 시간에 따른 판매량..)등을 처리할 수 있다.</p>
+<section id="rnn-구조" class="level3">
+<h3 class="anchored" data-anchor-id="rnn-구조">RNN 구조</h3>
+<div class="img-fluid quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://wikidocs.net/images/page/22886/rnn_image2_ver3.PNG" class="img-fluid figure-img"></p>
+<figcaption>.</figcaption>
+</figure>
 </div>
-</div></main> <!-- /main -->
+<p><code>-</code> Recurrent가 붙은 이유?<br>
+<span class="math inline">\(\rightarrow\)</span> ’반복적인’이라는 뜻을 가진 Recurrent는 네트워크 구조에서 반복적으로 계산되기 때문이다.<br>
+<span class="math inline">\(t-1\)</span>시점에서의 cell에서 output이 <span class="math inline">\(t\)</span>시점에서의 cell의 input으로 들어간다는 점에서, <span class="math inline">\(t\)</span> 시점에서의 값은 과거 값들에 영향을 받는다.</p>
+<p><img src="http://i.imgur.com/s8nYcww.png" width="400"></p>
+<ul>
+<li>위의 그림을 재해석 하면 다음과 같다.</li>
+</ul>
+<div class="img-fluid quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="RNN_files/figure-html/d6357885-f4fc-48da-be76-20f5735948f6-1-e59bf673-ff44-4ab2-b89a-88274690d64a.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

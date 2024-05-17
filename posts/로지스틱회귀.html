@@ -248,7 +248,35 @@ window.Quarto = {
 </section>
 <section id="다항-로지스틱-회귀-소프트맥스" class="level3">
 <h3 class="anchored" data-anchor-id="다항-로지스틱-회귀-소프트맥스">다항 로지스틱 회귀 &amp; 소프트맥스</h3>
-<p>(추가 업로드 예정)</p>
+<p><strong>linear predictor</strong></p>
+<p><span class="math inline">\(\begin{align}
+f(k,i) &amp;= \beta_{0k} + \beta_{1k}x_{1i} + \beta_{2k}x_{2i} + \cdot + \beta_{mk}x_{mi}\\
+       &amp;= \vec{\beta_k} \cdot \vec{x_i}
+\end{align}\)</span></p>
+<p><span class="math inline">\(log(\displaystyle\frac{P(Y_i=k)}{P(Y_i=K)}) = \vec{\beta_k} \cdot \vec{x_i}\)</span><br>
+<br>
+<span class="math inline">\(\Leftrightarrow \displaystyle\frac{P(Y_i=k)}{P(Y_i=K)} = exp(\vec{\beta_k} \vec{x_i})\)</span><br>
+<br>
+<span class="math inline">\(P(Y_i=k) = P(Y_i=K)exp(\vec{\beta_k} \vec{x_i})\)</span></p>
+<p><span class="math inline">\(\begin{align}
+P(Y_i=K) &amp;= 1 - \displaystyle\sum^{j=1}_{K-1}P(Y_i = j)\\
+         &amp;= 1 - \displaystyle\sum^{j=1}_{K-1}P(Y_i=k)exp(\vec{\beta_j} \vec{x_i})
+\end{align}\)</span></p>
+<p><span class="math inline">\(P(Y_i=K) =  1 - \displaystyle\sum_{j=1}^{K-1}P(Y_i=K)exp(\vec{\beta_j} \vec{x_i})\)</span><br>
+<br>
+<span class="math inline">\(P(Y_i=K)\big(1 + \displaystyle\sum_{j=1}^{K-1} e^{\vec{\beta_j} \vec{x_i}}\big) = 1\)</span><br>
+<br>
+<span class="math inline">\(P(Y_i=K) = \displaystyle\frac{1}{1 + \sum_{j=1}^{K-1} exp(\vec{\beta_j} \vec{x_i})}\)</span></p>
+<p>앞서서<br>
+<span class="math inline">\(P(Y_i=k) = P(Y_i=K)exp(\vec{\beta_k} \vec{x_i})\)</span>라고 했으므로<br>
+<br>
+<span class="math inline">\(P(Y_i=k) = \displaystyle\frac{exp(\vec{\beta_k} \vec{x_i})}{1 + \sum_{j=1}^{K-1} exp(\vec{\beta_j} \vec{x_i})}\)</span> (1)</p>
+<p><span class="math inline">\(\displaystyle\sum_{k=1}^{K}P(Y_i=k)=1\)</span>이 성립해야하므로 식을 다음과 같이 작성할 수 있다.<br>
+<span class="math inline">\(\displaystyle\sum_{k=1}^{K} \displaystyle\frac{e^{\vec{\beta_k} \vec{x_i}}}{1 + \sum_{j=1}^{K-1} e^{\vec{\beta_j} \vec{x_i}}} = 1\)</span><br>
+식을 정리하면<br>
+<span class="math inline">\(\displaystyle\sum_{k=1}^{K}exp(\vec{\beta_j} \vec{x_i}) =\displaystyle\sum_{j=1}^{K-1}exp(\vec{\beta_k} \vec{x_i}) - 1\)</span> 이 식을 (1)에 대입하면<br>
+<br>
+<span class="math inline">\(P(Y_i=k) = \displaystyle\frac{exp(\vec{\beta_k} \vec{x_i})}{\sum_{k=1}^{K}exp(\vec{\beta_k} \vec{x_i})}\)</span>가 성립한다.</p>
 </section>
 <section id="로지스틱-회귀-모델-학습" class="level3">
 <h3 class="anchored" data-anchor-id="로지스틱-회귀-모델-학습">로지스틱 회귀 모델 학습</h3>
