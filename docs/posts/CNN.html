@@ -195,7 +195,12 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="cnns-structure">CNN’s Structure</h2>
 <p><img src="https://images.squarespace-cdn.com/content/v1/5acbdd3a25bf024c12f4c8b4/1593967518672-RPGLD1X41M4OXWENZ0BN/CNN+Structure.jpg?format=2500w" class="img-fluid"><br>
 (사진 0) https://www.ml-science.com/convolutional-neural-networks<br>
-* 앞 부분이 <code>Feature Extractor</code>, 뒷 부분이 <code>FC layer</code>이다. * <code>Feature Extractor</code>에서는 말 그대로 사진의 특징을 추출하는 부분이다. * <code>FC layer</code>에서는 추출된 특징을 가지고 학습하는 부분이다.</p>
+</p>
+<ul>
+<li>앞 부분이 <code>Feature Extractor</code>, 뒷 부분이 <code>FC layer</code>이다.</li>
+<li><code>Feature Extractor</code>에서는 말 그대로 사진의 특징을 추출하는 부분이다.</li>
+<li><code>FC layer</code>에서는 추출된 특징을 가지고 학습하는 부분이다.</li>
+</ul>
 </section>
 <section id="feature-extractor" class="level2">
 <h2 class="anchored" data-anchor-id="feature-extractor">Feature Extractor</h2>
@@ -227,7 +232,10 @@ window.Quarto = {
 <li>kernel이 이동할 때 마다, kernel에 적혀진 숫자와 image의 pixel을 곱하고 더한 뒤에(합성곱을 해준 뒤에), 한 pixel에 나타낸다.(9개의 pixel <span class="math inline">\(\rightarrow\)</span> 1개의 pixel로 변환)</li>
 </ul>
 <p><img src="https://jeiwan.net/images/convolution-filter-example.png" class="img-fluid"><br>
-(사진 2.5) https://jeiwan.net/posts/til-convolution-filters-are-weights/ * Conv filter 의 간단한 예시와 결과이다.</p>
+(사진 2.5) https://jeiwan.net/posts/til-convolution-filters-are-weights/</p>
+<ul>
+<li>Conv filter 의 간단한 예시와 결과이다.</li>
+</ul>
 </section>
 <section id="padding" class="level4">
 <h4 class="anchored" data-anchor-id="padding"><code>-</code> <strong>Padding</strong></h4>
@@ -263,8 +271,17 @@ window.Quarto = {
 (사진 4)</p>
 <p><img src="CNN_files/figure-html/8613d40a-34cd-4cbe-b9e2-9ebf0581cc6e-1-65e313a3-ce53-466d-b4e8-0be9269788b0.png" class="img-fluid" alt="image.png"><br>
 (사진 5)</p>
-<p>(사진 4) * 앞서 설명했던 내용을 그림으로 나타내면 다음과 같다. * 컬러 이미지 <span class="math inline">\(X\)</span>는 첫번째 kernel을 통과하는데, 이때 kernel의 개수는 <span class="math inline">\(l_1\)</span>개이고, kernel의 사이즈는 <span class="math inline">\(f^{[1]}\)</span> x <span class="math inline">\(f^{[1]}\)</span>이다. * <span class="math inline">\(k_{i}^{[1]}\)</span> 커널을 지나간 이미지는 <span class="math inline">\(A_i^{[1]}\)</span>로 표현된다. (<span class="math inline">\(A_i^{[1]} \in R^{n^{[1]} \,\text{x} \,n^{[1]}}\)</span>)</p>
-<p>(사진 5) * (사진 4)과정을 계속 이어나가는 것을 시각화한 것이다. * kernel을 지나가는 과정에서 padding과 striding=1이 적용되었다.</p>
+<p><code>(사진 4)</code></p>
+<ul>
+<li>앞서 설명했던 내용을 그림으로 나타내면 다음과 같다.</li>
+<li>컬러 이미지 <span class="math inline">\(X\)</span>는 첫번째 kernel을 통과하는데, 이때 kernel의 개수는 <span class="math inline">\(l_1\)</span>개이고, kernel의 사이즈는 <span class="math inline">\(f^{[1]}\)</span> x <span class="math inline">\(f^{[1]}\)</span>이다.</li>
+<li><span class="math inline">\(k_{i}^{[1]}\)</span> 커널을 지나간 이미지는 <span class="math inline">\(A_i^{[1]}\)</span>로 표현된다. (<span class="math inline">\(A_i^{[1]} \in R^{n^{[1]} \,\text{x} \,n^{[1]}}\)</span>)</li>
+</ul>
+<p><code>(사진 5)</code></p>
+<ul>
+<li>(사진 4)과정을 계속 이어나가는 것을 시각화한 것이다.</li>
+<li>kernel을 지나가는 과정에서 padding과 striding=1이 적용되었다.</li>
+</ul>
 </section>
 <section id="visualization" class="level4">
 <h4 class="anchored" data-anchor-id="visualization"><code>-</code> <strong>Visualization</strong></h4>
